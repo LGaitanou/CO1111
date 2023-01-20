@@ -6,4 +6,5 @@ A Computing Challenge that involves the use of Javascript,Hyper text markup lang
 
 Test from my laptop
 
-test 2
+Loizos!
+Theodoulos!

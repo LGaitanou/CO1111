@@ -9,10 +9,27 @@ fetch("https://codecyprus.org/th/api/list")
             let uuid = THArray[i].uuid;
             console.log(uuid);
             // let link = "https://codecyprus.org/th/api/start?player=Loizos&app=LOLOLOL&treasure-hunt-id=" + uuid;
-            listItem.innerHTML = "<a href=https://codecyprus.org/th/api/start?player=Loizos&app=LOLOLOL&treasure-hunt-id= + uuid>" + THArray[i].name + "</a>";
+            listItem.innerHTML = "<a href=https://codecyprus.org/th/api/start?player=Loizos&app=LOLOLOL&treasure-hunt-id=>" + THArray[i].name + "</a>";
             challengesList.appendChild(listItem);
         }
     });
 
 
 let body = document.body;
+
+/*
+let loadingDiv = document.getElementById("myDiv");
+
+const URL = "student.json";
+
+fetch(URL)
+    .then(response => response.json())
+    .then((json) => {
+        loadingDiv.innerHTML = "Loaded";
+        if (json.status === "OK") {
+
+        }
+    });
+*/
+
+

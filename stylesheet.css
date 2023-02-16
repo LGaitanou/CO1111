@@ -1,7 +1,18 @@
+*{
+   font-family: Cascadia Code;
+}
+
 body {
+    margin: 0px;
+    padding: 0px;
     background-color: white;
     background-size: cover;
     background-position: center;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    background-image: linear-gradient(to right, black, saddlebrown, black);
+
 }
 #header {
     background-clip: text;
@@ -44,3 +55,31 @@ body {
 #copyright {
     color: steelblue;
 }
+
+/*
+The following are for the about page
+ */
+
+#Names{
+    color: grey;
+}
+
+.Names{
+    color: grey;
+}
+
+footer{
+    height: 200px;
+    position: sticky;
+    top: auto;
+    margin-top: 50px;
+    padding-top: 100px;
+}
+
+.Logo{
+    position: absolute;
+    right: 0px;
+    bottom: 10px;
+    left: 1400px;
+}
+

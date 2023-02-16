@@ -1,16 +1,18 @@
 header {
-    background-color: red;
-    border-color: purple;
     height: 100px;
     margin: 0px;
     padding: 0px;
+    background-image: linear-gradient(to right, black, sandybrown, black);
 }
 
 body {  /* The body tag of all pages */
     margin: 0px;
     padding: 0px;
 
-    background-color: indigo;
+    background-image: linear-gradient(to right, black, saddlebrown, black);
+}
 
+#challengeList {
+    list-style: none;
 }
 

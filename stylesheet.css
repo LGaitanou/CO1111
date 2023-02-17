@@ -5,18 +5,16 @@
 body {
     margin: 0px;
     padding: 0px;
-    background-color: white;
     background-size: cover;
     background-position: center;
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    background-image: linear-gradient(to right, black, saddlebrown, black);
+    background-image: url("download.jpg");
+
 
 }
 #header {
-    background-clip: text;
-    background-image: linear-gradient(to right, steelblue, #ffffff, steelblue);
     padding: 20px;
     text-align: center;
 }
@@ -25,7 +23,6 @@ body {
     font-weight: bold;
 }
 #main-content {
-    background-image: url('./Landscape.jpg');
     background-size: cover;
     background-position: center;
     padding: 40px;
@@ -48,8 +45,6 @@ body {
 
     padding: 20px;
     text-align: center;
-    background-clip: text;
-    background-image: linear-gradient(to right, steelblue, #ffffff, steelblue);
 }
 
 #copyright {

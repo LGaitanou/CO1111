@@ -1,3 +1,11 @@
+:root {
+    --pop-up: block;
+}
+
+*{
+    font-family: Cascadia Code;
+}
+
 header {
     height: 100px;
     margin: 0px;
@@ -19,4 +27,24 @@ body {  /* The body tag of all pages */
 
 li {
     /*border-width: ;*/
+}
+
+#enterName {
+    display: var(--pop-up);
+    position: fixed;
+    right: 700px;
+    top: 300px;
+    background-color: white;
+    height: 400px;
+    width: 500px;
+    border: black 6px solid;
+    text-align: center;
+}
+
+#title {
+    margin-bottom: 0px;
+}
+
+#explanation {
+    margin-top: 0px;
 }

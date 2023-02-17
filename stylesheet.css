@@ -33,20 +33,32 @@ body {
     font-weight: bold;
 }
 
-#about-button, #registration-button, #Login{
-    background-color: steelblue;
-    color: black;
-    padding: 10px 20px;
-    margin-left: 20px;
-    background-size: 50px;
-}
-
-#footer {
-
-    padding: 20px;
+#about-button{
+    position: absolute;
+    right: 0px;
+    bottom: 10px;
+    left: 15px;
     text-align: center;
 }
 
+#Start {
+    background-color: transparent;
+    color: black;
+    margin-left: 0px;
+    background-size: 100px;
+    position: center;
+    border: 100px solid black;
+    height: 150px;
+    width: 200px;
+    padding: 0;
+
+    background: none;
+}
+
+#footer {
+    padding: 20px;
+    text-align: center;
+}
 #copyright {
     color: steelblue;
 }
@@ -78,3 +90,4 @@ footer{
     left: 1400px;
 }
 
+functiom Start

@@ -2,14 +2,15 @@ header {
     height: 100px;
     margin: 0px;
     padding: 0px;
-    background-image: linear-gradient(to right, black, sandybrown, black);
+    background-image: url("images.jpg");
+
 }
 
 body {  /* The body tag of all pages */
     margin: 0px;
     padding: 0px;
 
-    background-image: linear-gradient(to right, black, saddlebrown, black);
+    background-image: url("download.jpg");
 }
 
 #challengeList {

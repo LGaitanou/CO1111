@@ -31,9 +31,9 @@ li {
 
 #enterName {
     display: var(--pop-up);
-    position: fixed;
+    /*position: fixed;
     right: 700px;
-    top: 300px;
+    top: 300px;*/
     background-color: white;
     height: 400px;
     width: 500px;

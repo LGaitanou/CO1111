@@ -1,11 +1,11 @@
 function RemoveElement() {
 
 }
+
 function getChallenges() {
     fetch("https://codecyprus.org/th/api/list")
         .then(response => response.json()) //Parse JSON text to JavaScript object
         .then(jsonObject => {
-            //console.log(jsonObject.treasureHunts); //TODO - Success, do something with the data.
             let THArray = jsonObject.treasureHunts;
             console.log(THArray);
             for (let i = 0; i < THArray.length; i++) {
@@ -29,7 +29,7 @@ const params = new Proxy(new URLSearchParams(window.location.search), {
 // Get the name of the team
 let teamName = params.name; // "some_value"
 
-
+console.log(teamName);
 /*
 let loadingDiv = document.getElementById("myDiv");
 

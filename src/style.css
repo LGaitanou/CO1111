@@ -38,7 +38,10 @@ li {
     height: 400px;
     width: 500px;
     border: black 6px solid;
+    margin-top: 200px;
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #title {

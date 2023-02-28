@@ -1,6 +1,3 @@
-function RemoveElement() {
-
-}
 
 function getChallenges() {
     fetch("https://codecyprus.org/th/api/list")
@@ -27,33 +24,21 @@ function getChallenges() {
             }
         });
 }
-getChallenges();
+
 let challengesList = document.getElementById("challengeList");
 let errorList = document.getElementById("errorList");
 let loader = document.getElementById("loader");
-// This black of code handles query strings and was taken from the website stackoverflow
+
+// This block of code handles query strings and was taken from the website stackoverflow
 // https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
 const params = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),
 });
 
 // Get the name of the team
-let teamName = params.name; // "some_value"
+let teamName = params.name;
 
-console.log(teamName);
-/*
-let loadingDiv = document.getElementById("myDiv");
 
-const URL = "student.json";
 
-fetch(URL)
-    .then(response => response.json())
-    .then((json) => {
-        loadingDiv.innerHTML = "Loaded";
-        if (json.status === "OK") {
-
-        }
-    });
-*/
 
 

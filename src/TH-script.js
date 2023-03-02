@@ -76,7 +76,14 @@ function getQuestions() {
                     setInterval(getLocation, 31000);
                     set = true;
                 }
+                if (jsonObject.canBeSkipped) document.getElementById("skipButton").style.display = "block";
+                else document.getElementById("skipButton").style.display = "none";
 
+                let question = document.getElementById("question");
+                let message = document.getElementById("message");
+                question.innerHTML = jsonObject.questionText;
+                message.innerHTML = getCookie("message");
+                console.log(jsonObject);
 
             }
             else {
@@ -89,6 +96,19 @@ function getQuestions() {
         });
 }
 
+function answerQuestion(answer) {
+    fetch(TH_BASE_URL + "answer?session=" + getCookie("session") + "&answer=" + answer)
+        .then(response => response.json())
+        .then(jsonObject => {
+            if (jsonObject.status === "OK") {
+                score += jsonObject.scoreAdjustment;
+                setCookie("message", jsonObject.massage, 365);
+                if (jsonObject.completed) completed = true;
+                location.reload();
+            }
+            });
+}
+
 function skipQuestion() {
     if (confirm("Do you want to skip the question?")) {
         let s = getCookie("session");
@@ -96,7 +116,7 @@ function skipQuestion() {
             .then(response => response.json())
             .then(jsonObject => {
                 setCookie("message", jsonObject.message, 365);
-                score += Number(jsonObject.scoreAdjustment);
+                score += jsonObject.scoreAdjustment;
                 if (jsonObject.completed) completed = true;
                 location.reload();
             });
@@ -155,7 +175,6 @@ function getLocation() {
 
 function updatePosition(position) {
     fetch(TH_BASE_URL + "location?session=" +  +"&latitude= + " + position.coords.latitude + "&longitude=" + position.coords.longitude)
-    alert("Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude);
 }
 
 /////////////////////////////////////

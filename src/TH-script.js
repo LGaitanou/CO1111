@@ -1,5 +1,8 @@
 const TH_BASE_URL = "https://codecyprus.org/th/api/"; // the true API base url
 const TH_TEST_URL = "https://codecyprus.org/th/test-api/"; // the test API base url
+let score = 0;
+let set = false;
+let completed = false;
 
 function redirect(url) {
     window.location.href = url.toString();
@@ -45,7 +48,7 @@ const params = new Proxy(new URLSearchParams(window.location.search), {
 let teamName = params.name;
 
 function select(uuid) {
-
+    errorList.innerHTML = " ";
     console.log("ENTERED")
     fetch(TH_BASE_URL + "start?player=" + teamName + "&app=TH-Team6&treasure-hunt-id=" + uuid)
         .then(response => response.json())
@@ -55,10 +58,49 @@ function select(uuid) {
                 redirect("session.html");
             }
             else {
+                for (let i = 0; i < jsonObject.errorMessages.length; i++) {
+                    let listItem = document.createElement("li");
+                    listItem.innerHTML = jsonObject.errorMessages[i];
+                    errorList.appendChild(listItem);
+                }
+            }
+        });
+}
+
+function getQuestions() {
+    fetch(TH_BASE_URL + "question?session=" + getCookie("session"))
+        .then(response => response.json())
+        .then(jsonObject => {
+            if (jsonObject.status === "OK") {
+                if(!set) {
+                    setInterval(getLocation, 31000);
+                    set = true;
+                }
+
 
             }
-
+            else {
+                for (let i = 0; i < jsonObject.errorMessages.length; i++) {
+                    let listItem = document.createElement("li");
+                    listItem.innerHTML = jsonObject.errorMessages[i];
+                    errorList.appendChild(listItem);
+                }
+            }
         });
+}
+
+function skipQuestion() {
+    if (confirm("Do you want to skip the question?")) {
+        let s = getCookie("session");
+        fetch(TH_BASE_URL + "skip?session=" + s)
+            .then(response => response.json())
+            .then(jsonObject => {
+                setCookie("message", jsonObject.message, 365);
+                score += Number(jsonObject.scoreAdjustment);
+                if (jsonObject.completed) completed = true;
+                location.reload();
+            });
+    }
 }
 
 // Functions to handle cookies taken from w3schools
@@ -99,6 +141,21 @@ function checkCookie() {
     }
 }
 
+// Functions to handle the position of the user in real time
 //////////////////////////////////////
 
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(updatePosition);
+    }
+    else {
+        alert("Geolocation is not supported by your browser.");
+    }
+}
 
+function updatePosition(position) {
+    fetch(TH_BASE_URL + "location?session=" +  +"&latitude= + " + position.coords.latitude + "&longitude=" + position.coords.longitude)
+    alert("Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude);
+}
+
+/////////////////////////////////////

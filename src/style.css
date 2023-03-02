@@ -97,3 +97,14 @@ li {
 h3 {
     margin: 0px 10px 0px 10px;
 }
+
+#errorList {
+    list-style: none;
+}
+
+#skipButton {
+    border: 1px solid dimgrey;
+    background-color: black;
+    color: navajowhite;
+    padding: 10px;
+}

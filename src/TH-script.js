@@ -3,6 +3,10 @@ const TH_TEST_URL = "https://codecyprus.org/th/test-api/"; // the test API base 
 let score = 0;
 let set = false;
 let completed = false;
+let challengesList = document.getElementById("challengeList");
+let errorList = document.getElementById("errorList");
+let loader = document.getElementById("loader");
+
 
 function redirect(url) {
     window.location.href = url.toString();
@@ -34,10 +38,6 @@ function getChallenges() {
         });
 }
 
-let challengesList = document.getElementById("challengeList");
-let errorList = document.getElementById("errorList");
-let loader = document.getElementById("loader");
-
 // This block of code handles query strings and was taken from the website stackoverflow
 // https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
 const params = new Proxy(new URLSearchParams(window.location.search), {
@@ -46,11 +46,12 @@ const params = new Proxy(new URLSearchParams(window.location.search), {
 
 // Get the name of the team
 let teamName = params.name;
+if (!(teamName === null)) setCookie("name", teamName, 365);
 
 function select(uuid) {
     errorList.innerHTML = " ";
     console.log("ENTERED")
-    fetch(TH_BASE_URL + "start?player=" + teamName + "&app=TH-Team6&treasure-hunt-id=" + uuid)
+    fetch(TH_BASE_URL + "start?player=" + getCookie("name") + "&app=TH-Team6&treasure-hunt-id=" + uuid)
         .then(response => response.json())
         .then(jsonObject => {
             if (jsonObject.status === "OK") {
@@ -76,6 +77,7 @@ function getQuestions() {
                     setInterval(getLocation, 31000);
                     set = true;
                 }
+
                 if (jsonObject.canBeSkipped) document.getElementById("skipButton").style.display = "block";
                 else document.getElementById("skipButton").style.display = "none";
 
@@ -85,18 +87,22 @@ function getQuestions() {
                 message.innerHTML = getCookie("message");
                 console.log(jsonObject);
 
+                setQuestionInterface(jsonObject.questionType);
+
+
+
             }
             else {
                 for (let i = 0; i < jsonObject.errorMessages.length; i++) {
-                    let listItem = document.createElement("li");
-                    listItem.innerHTML = jsonObject.errorMessages[i];
-                    errorList.appendChild(listItem);
+                    alert(jsonObject.errorMessages[i]);
                 }
+                window.location.href = "name.html";
             }
         });
 }
 
 function answerQuestion(answer) {
+    console.log(answer);
     fetch(TH_BASE_URL + "answer?session=" + getCookie("session") + "&answer=" + answer)
         .then(response => response.json())
         .then(jsonObject => {
@@ -104,7 +110,14 @@ function answerQuestion(answer) {
                 score += jsonObject.scoreAdjustment;
                 setCookie("message", jsonObject.massage, 365);
                 if (jsonObject.completed) completed = true;
+
                 location.reload();
+            }
+            else {
+                for (let i = 0; i < jsonObject.errorMessages.length; i++) {
+                    alert(jsonObject.errorMessages[i]);
+                }
+                window.location.href = "name.html";
             }
             });
 }
@@ -117,11 +130,62 @@ function skipQuestion() {
             .then(jsonObject => {
                 setCookie("message", jsonObject.message, 365);
                 score += jsonObject.scoreAdjustment;
+                alert(score);
                 if (jsonObject.completed) completed = true;
                 location.reload();
             });
     }
 }
+
+function updateScore(adjustment) {
+    setCookie("cookie", )
+}
+
+function setQuestionInterface(type) {
+    let b = document.getElementById("boolean");
+    let i = document.getElementById("integer");
+    let n = document.getElementById("numeric");
+    let m = document.getElementById("MCQ");
+    let t = document.getElementById("text");
+    if (type === "BOOLEAN") {
+        b.style.display = "block";
+        i.style.display = "none";
+        n.style.display = "none";
+        m.style.display = "none";
+        t.style.display = "none";
+    } else if (type === "INTEGER") {
+        b.style.display = "none";
+        i.style.display = "block";
+        n.style.display = "none";
+        m.style.display = "none";
+        t.style.display = "none";
+    } else if (type === "NUMERIC") {
+        b.style.display = "none";
+        i.style.display = "none";
+        n.style.display = "block";
+        m.style.display = "none";
+        t.style.display = "none";
+    } else if (type === "MCQ") {
+        b.style.display = "none";
+        i.style.display = "none";
+        n.style.display = "none";
+        m.style.display = "block";
+        t.style.display = "none";
+    } else if (type === "TEXT") {
+        b.style.display = "none";
+        i.style.display = "none";
+        n.style.display = "none";
+        m.style.display = "none";
+        t.style.display = "block";
+    }
+}
+
+
+// leaderboard
+if (completed) {
+    alert("Finished");
+}
+
 
 // Functions to handle cookies taken from w3schools
 // https://www.w3schools.com/js/js_cookies.asp

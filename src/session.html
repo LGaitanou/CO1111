@@ -15,22 +15,42 @@
 
 <div id="score"></div>
 
-<div id="remainingQuestions"></div>
+<div id="completedQuestions"></div>
 
 <div id="question"></div>
 
 <div id="boolean">
-    <input class="boolAns" type="button" value="true" onclick="answerQuestion(true)">
-    <input class="boolAns" type="button" value="false" onclick="answerQuestion(false)">
+    <input class="boolAns" name="bool" type="button" value="true" onclick="answerQuestion(true)">
+    <input class="boolAns" name="bool" type="button" value="false" onclick="answerQuestion(false)">
 </div>
 
-<div id="integer"></div>
+<div id="integer">
+    <form>
+        <input id="trueIntAns" class="intAns" name="int" type="number">
+        <input class="intAns" name="int" type="submit" value="Submit" onclick="answerQuestion(document.getElementById('trueIntAns'))">
+    </form>
+</div>
 
-<div id="numeric"></div>
+<div id="numeric">
+    <form>
+        <input id="trueNumAns" class="numAns" name="num" type="number">
+        <input class="numAns" step="0.00001" name="num" type="submit" value="Submit" onclick="answerQuestion(document.getElementById('trueNumAns'))">
+    </form>
+</div>
 
-<div id="MCQ"></div>
+<div id="MCQ">
+    <input class="abcdAns" name="abcd" type="button" value="A" onclick="answerQuestion('A')">
+    <input class="abcdAns" name="abcd" type="button" value="B" onclick="answerQuestion('B')">
+    <input class="abcdAns" name="abcd" type="button" value="C" onclick="answerQuestion('C')">
+    <input class="abcdAns" name="abcd" type="button" value="D" onclick="answerQuestion('D')">
+</div>
 
-<div id="text"></div>
+<div id="text">
+    <form>
+        <input id="trueTextAns" class="textAns" name="text" type="text">
+        <input class="textAns" maxlength="20" name="text" type="submit" value="Submit" onclick="answerQuestion(document.getElementById('trueTextAns'))">
+    </form>
+</div>
 
 <div id="skipButton" onclick="skipQuestion()">Skip</div>
 

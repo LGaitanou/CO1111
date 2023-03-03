@@ -69,28 +69,27 @@ li {
 }
 
 /* The Back button */
-#back {
+#back, #reload {
     margin-top: 25px;
     margin-right: 25px;
     float: right;
     color: antiquewhite;
     font-size: 30px;
-
 }
 
-#back:link {
+#back:link, #reload:link {
     text-decoration: none;
 }
 
-#back:visited {
+#back:visited, #reload:link {
     text-decoration: none;
 }
 
-#back:hover {
+#back:hover, #reload:link {
     text-decoration: none;
 }
 
-#back:active {
+#back:active, #reload:link {
     text-decoration: none;
 }
 

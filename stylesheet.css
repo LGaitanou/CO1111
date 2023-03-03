@@ -34,30 +34,70 @@ body {
 }
 
 #about-button{
-    position: absolute;
-    right: 0px;
-    bottom: 10px;
-    left: 15px;
-    text-align: center;
-}
-
-#Start {
     background-color: transparent;
     color: black;
+    background-size: 100px;
+    position: center;
+    border: 3px black;
+    height: 250px;
+    width: 600px;
+    padding: 10px;
+    font-size: medium;
+}
+
+#about-button:link {
+    text-decoration: none;
+}
+
+#about-button:visited {
+    text-decoration: none;
+}
+
+#about-button:hover {
+    text-decoration: none;
+}
+
+#about-button:active {
+    text-decoration: none;
+}
+
+
+#Start {
+    background-color: darkgray;
     margin-left: 0px;
     background-size: 100px;
     position: center;
-    border: 100px solid black;
+    border: 2px solid black;
+    border-radius: 15px 50px;
+    color: black;
     height: 150px;
     width: 200px;
-    padding: 0;
+    padding: 30px;
+    font-size: xx-large;
 
+}
+
+#Start:link {
+    text-decoration: none;
+}
+
+#Start:visited {
+    text-decoration: none;
+}
+
+#Start:hover {
+    text-decoration: none;
+}
+
+#Start:active {
+    text-decoration: none;
 }
 
 #footer {
     padding: 20px;
     text-align: center;
 }
+
 #copyright {
     color: steelblue;
 }

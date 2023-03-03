@@ -68,8 +68,8 @@ li {
     100% { transform: rotate(360deg); }
 }
 
-/* The reload button */
-#reload {
+/* The Back button */
+#back {
     margin-top: 25px;
     margin-right: 25px;
     float: right;
@@ -78,22 +78,33 @@ li {
 
 }
 
-#reload:link {
+#back:link {
     text-decoration: none;
 }
 
-#reload:visited {
+#back:visited {
     text-decoration: none;
 }
 
-#reload:hover {
+#back:hover {
     text-decoration: none;
 }
 
-#reload:active {
+#back:active {
     text-decoration: none;
 }
 
 h3 {
     margin: 0px 10px 0px 10px;
+}
+
+#errorList {
+    list-style: none;
+}
+
+#skipButton {
+    border: 1px solid dimgrey;
+    background-color: black;
+    color: navajowhite;
+    padding: 10px;
 }

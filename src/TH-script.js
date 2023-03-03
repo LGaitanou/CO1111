@@ -1,11 +1,14 @@
 const TH_BASE_URL = "https://codecyprus.org/th/api/"; // the true API base url
 const TH_TEST_URL = "https://codecyprus.org/th/test-api/"; // the test API base url
-let score = 0;
 let set = false;
 let completed = false;
 let challengesList = document.getElementById("challengeList");
 let errorList = document.getElementById("errorList");
 let loader = document.getElementById("loader");
+//let score = 4;
+let correctScore = 0;
+let wrongScore = 0;
+let skipScore = 0;
 
 
 function redirect(url) {
@@ -75,18 +78,28 @@ function getQuestions() {
             if (jsonObject.status === "OK") {
                 if(!set) {
                     setInterval(getLocation, 31000);
+                    //setCookie("cookie", 0, 365);
                     set = true;
                 }
 
+                // Makes the skip button appear or disappear
                 if (jsonObject.canBeSkipped) document.getElementById("skipButton").style.display = "block";
                 else document.getElementById("skipButton").style.display = "none";
 
-                let question = document.getElementById("question");
-                let message = document.getElementById("message");
-                question.innerHTML = jsonObject.questionText;
-                message.innerHTML = getCookie("message");
-                console.log(jsonObject);
+                let numOfQuestions = document.getElementById("numOfQuestions");
+                numOfQuestions.innerHTML = jsonObject.numOfQuestions;
 
+                let completedQuestions = document.getElementById("completedQuestions");
+                completedQuestions.innerText = jsonObject.currentQuestionIndex;
+
+                let question = document.getElementById("question");
+                question.innerHTML = jsonObject.questionText;
+
+                correctScore = jsonObject.correctScore;
+                wrongScore = jsonObject.wrongScore;
+                skipScore = jsonObject.skipScore;
+
+                console.log(jsonObject);
                 setQuestionInterface(jsonObject.questionType);
 
 
@@ -107,8 +120,13 @@ function answerQuestion(answer) {
         .then(response => response.json())
         .then(jsonObject => {
             if (jsonObject.status === "OK") {
-                score += jsonObject.scoreAdjustment;
-                setCookie("message", jsonObject.massage, 365);
+                let scoreQ = document.getElementById("score");
+                scoreQ.innerHTML += jsonObject.scoreAdjustment;
+                //updateScore(jsonObject.scoreAdjustment);
+                //setCookie("message", jsonObject.massage, 365);
+
+                let me = document.getElementById("message");
+                me.innerHTML = jsonObject.message;
                 if (jsonObject.completed) completed = true;
 
                 location.reload();
@@ -128,9 +146,14 @@ function skipQuestion() {
         fetch(TH_BASE_URL + "skip?session=" + s)
             .then(response => response.json())
             .then(jsonObject => {
-                setCookie("message", jsonObject.message, 365);
-                score += jsonObject.scoreAdjustment;
-                alert(score);
+                let scoreQ = document.getElementById("score");
+                scoreQ.innerHTML += jsonObject.scoreAdjustment;
+                //setCookie("message", jsonObject.message, 365);
+                //let score = document.getElementById("score");
+                //score.innerHTML += jsonObject.scoreAdjustment;
+                //updateScore(jsonObject.scoreAdjustment);
+                let me = document.getElementById("message");
+                me.innerHTML = jsonObject.message;
                 if (jsonObject.completed) completed = true;
                 location.reload();
             });
@@ -138,7 +161,11 @@ function skipQuestion() {
 }
 
 function updateScore(adjustment) {
-    setCookie("cookie", )
+    let score = Number(getCookie("cookie"));
+    alert(getCookie("cookie"));//
+    score += adjustment;
+    setCookie("cookie", score, 365);
+    alert(getCookie("cookie"));//
 }
 
 function setQuestionInterface(type) {

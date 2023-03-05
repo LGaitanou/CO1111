@@ -7,21 +7,30 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body onload="getQuestions()">
+<body id="sessionBody" onload="getQuestions()">
 <header>
     <img src="Team6Logo.jpg" alt="Treasure Hunt Team 6 Logo" width="100" height="100">
 </header>
 
-<div id="message">Proceed with the first question!</div>
+<!-- Score Display-->
+<div id="sDisplay">
+<p style="font-weight: bold;" class="score">Score: </p>
+<p id="score" class="score" style="text-align: left; width: 15px;">0</p>
+</div>
 
-<b>Score: </b>
-<p id="score">0</p>
+<!-- Number of Questions and remaining Questions Display-->
+<div id="qDisplay">
+<div id="numOfQuestions" class="questionsNum"></div>
+<div class="questionsNum" style="width: 4px">/</div>
+<div id="completedQuestions" class="questionsNum" style="text-align: right; width: 80px"></div>
+<div class="questionsNum" style="width: 4px; font-weight: bold;">Questions: </div>
+</div>
 
-<p>Number of Questions: <div id="numOfQuestions"></div>
-<p>Number of Completed Questions: <div id="completedQuestions"></div>
+<div id="message" class="center"></div>
 
-<div id="question"></div>
+<div id="question" class="center"></div>
 
+<div id="questionTypes" class="center">
 <div id="boolean">
     <input class="boolAns" name="bool" type="button" value="true" onclick="answerQuestion(true)">
     <input class="boolAns" name="bool" type="button" value="false" onclick="answerQuestion(false)">
@@ -29,15 +38,15 @@
 
 <div id="integer">
     <form>
-        <input id="trueIntAns" class="intAns" name="int" type="number">
-        <input class="intAns" name="int" type="submit" value="Submit" onclick="answerQuestion(document.getElementById('trueIntAns'))">
+        <input id="trueIntAns" class="intAns" type="number" placeholder="...">
+        <input class="submit" type="button" value="Submit" onclick="answerQuestion(document.getElementById('trueIntAns').value)">
     </form>
 </div>
 
 <div id="numeric">
     <form>
-        <input id="trueNumAns" class="numAns" name="num" type="number">
-        <input class="numAns" step="0.00001" name="num" type="submit" value="Submit" onclick="answerQuestion(document.getElementById('trueNumAns'))">
+        <input id="trueNumAns" class="numAns" type="number" placeholder="...">
+        <input class="submit" step="0.00001" type="button" value="Submit" onclick="answerQuestion(document.getElementById('trueNumAns').value)">
     </form>
 </div>
 
@@ -50,12 +59,13 @@
 
 <div id="text">
     <form>
-        <input id="trueTextAns" class="textAns" name="text" type="text">
-        <input class="textAns" maxlength="20" name="text" type="submit" value="Submit" onclick="answerQuestion(document.getElementById('trueTextAns'))">
+        <input id="trueTextAns" class="textAns" type="text" placeholder="...">
+        <input class="submit" maxlength="50" type="button" value="Submit" onclick="answerQuestion(document.getElementById('trueTextAns').value)">
     </form>
 </div>
+</div>
 
-<div id="skipButton" onclick="skipQuestion()">Skip</div>
+<div id="skipButton" class="center" onclick="skipQuestion()">Skip</div>
 
 <script src="TH-script.js"></script>
 </body>

@@ -2,14 +2,13 @@
     --pop-up: block;
 }
 
-*{
+* {
     font-family: Cascadia Code;
 }
 
 header {
     height: 100px;
-    margin: 0px;
-    padding: 0px;
+    max-width: 100%;
     background-image: url("images.jpg");
 
 }
@@ -106,4 +105,44 @@ h3 {
     background-color: black;
     color: navajowhite;
     padding: 10px;
+    text-align: center;
+    width: 50px;
+    display: flex;
+}
+
+/* For mobile phones */
+@media screen and (max-width: 600px) {
+    #back, #reload {
+        margin-top: 40px;
+        font-size: 15px;
+    }
+}
+
+.score {
+   text-align: center;
+    width: 70px;
+    float: left;
+}
+
+.questionsNum {
+    float: right;
+    width: 100px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#message {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.center {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+    text-align: center;
+}
+
+#qDisplay {
+
 }

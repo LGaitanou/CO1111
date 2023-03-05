@@ -95,21 +95,19 @@ function getQuestions() {
                 let question = document.getElementById("question");
                 question.innerHTML = jsonObject.questionText;
 
-                correctScore = jsonObject.correctScore;
-                wrongScore = jsonObject.wrongScore;
-                skipScore = jsonObject.skipScore;
-
                 console.log(jsonObject);
                 setQuestionInterface(jsonObject.questionType);
 
-
+                if (jsonObject.completed) {
+                    window.location.href = "leaderboard.html";
+                }
 
             }
             else {
                 for (let i = 0; i < jsonObject.errorMessages.length; i++) {
                     alert(jsonObject.errorMessages[i]);
                 }
-                window.location.href = "name.html";
+                //window.location.href = "name.html";
             }
         });
 }
@@ -135,7 +133,7 @@ function answerQuestion(answer) {
                 for (let i = 0; i < jsonObject.errorMessages.length; i++) {
                     alert(jsonObject.errorMessages[i]);
                 }
-                window.location.href = "name.html";
+                //window.location.href = "name.html";
             }
             });
 }
@@ -146,18 +144,29 @@ function skipQuestion() {
         fetch(TH_BASE_URL + "skip?session=" + s)
             .then(response => response.json())
             .then(jsonObject => {
-                let scoreQ = document.getElementById("score");
-                scoreQ.innerHTML += jsonObject.scoreAdjustment;
-                //setCookie("message", jsonObject.message, 365);
-                //let score = document.getElementById("score");
-                //score.innerHTML += jsonObject.scoreAdjustment;
-                //updateScore(jsonObject.scoreAdjustment);
-                let me = document.getElementById("message");
-                me.innerHTML = jsonObject.message;
-                if (jsonObject.completed) completed = true;
-                location.reload();
+                if (jsonObject.status === "OK") {
+                    let scoreQ = document.getElementById("score");
+                    scoreQ.innerHTML += jsonObject.scoreAdjustment;
+                    //setCookie("message", jsonObject.message, 365);
+                    //let score = document.getElementById("score");
+                    //score.innerHTML += jsonObject.scoreAdjustment;
+                    //updateScore(jsonObject.scoreAdjustment);
+                    let me = document.getElementById("message");
+                    me.innerHTML = jsonObject.message;
+                    if (jsonObject.completed) completed = true;
+                    location.reload();
+                }
+                else {
+                    for (let i = 0; i < jsonObject.errorMessages.length; i++) {
+                        alert(jsonObject.errorMessages[i]);
+                    }
+                }
             });
     }
+}
+
+function getLeaderboard() {
+
 }
 
 function updateScore(adjustment) {

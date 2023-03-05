@@ -107,7 +107,6 @@ h3 {
     padding: 10px;
     text-align: center;
     width: 50px;
-    display: flex;
 }
 
 /* For mobile phones */
@@ -143,6 +142,15 @@ h3 {
     text-align: center;
 }
 
-#qDisplay {
+.submit {
+    border: 1px solid dimgrey;
+    background-color: black;
+    color: navajowhite;
+    padding: 10px;
+    text-align: center;
+    width: 60px;
+}
 
+#trueIntAns, #trueNumAns, #trueTextAns {
+    margin-bottom: 10px;
 }

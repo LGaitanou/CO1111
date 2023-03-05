@@ -99,15 +99,15 @@ function getQuestions() {
                 setQuestionInterface(jsonObject.questionType);
 
                 if (jsonObject.completed) {
+                    document.cookie = "session =; expires=Wed, 31 Oct 2012 08:50:17 UTC;";
                     window.location.href = "leaderboard.html";
                 }
-
+                showScore();
             }
             else {
                 for (let i = 0; i < jsonObject.errorMessages.length; i++) {
                     alert(jsonObject.errorMessages[i]);
                 }
-                //window.location.href = "name.html";
             }
         });
 }
@@ -118,24 +118,41 @@ function answerQuestion(answer) {
         .then(response => response.json())
         .then(jsonObject => {
             if (jsonObject.status === "OK") {
-                let scoreQ = document.getElementById("score");
-                scoreQ.innerHTML += jsonObject.scoreAdjustment;
-                //updateScore(jsonObject.scoreAdjustment);
-                //setCookie("message", jsonObject.massage, 365);
-
                 let me = document.getElementById("message");
                 me.innerHTML = jsonObject.message;
-                if (jsonObject.completed) completed = true;
-
-                location.reload();
+                if (jsonObject.completed) {
+                    document.cookie = "session =; expires=Wed, 31 Oct 2012 08:50:17 UTC;";
+                    window.location.href = "leaderboard.html";
+                }
+                showScore();
+                if (jsonObject.correct) location.reload();
             }
             else {
                 for (let i = 0; i < jsonObject.errorMessages.length; i++) {
                     alert(jsonObject.errorMessages[i]);
                 }
-                //window.location.href = "name.html";
             }
             });
+}
+
+function showScore() {
+    fetch(TH_BASE_URL + "score?session=" + getCookie("session"))
+        .then(response => response.json())
+        .then(jsonObject => {
+            if (jsonObject.status === "OK") {
+                let scoreQ = document.getElementById("score");
+                scoreQ.innerHTML = jsonObject.score;
+                if (jsonObject.finished) {
+                    alert("You have run out of time!");
+                    window.location.href = "name.html";
+                }
+            }
+            else {
+                for (let i = 0; i < jsonObject.errorMessages.length; i++) {
+                    alert(jsonObject.errorMessages[i]);
+                }
+            }
+        });
 }
 
 function skipQuestion() {

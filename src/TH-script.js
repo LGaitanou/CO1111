@@ -1,15 +1,8 @@
 const TH_BASE_URL = "https://codecyprus.org/th/api/"; // the true API base url
 const TH_TEST_URL = "https://codecyprus.org/th/test-api/"; // the test API base url
-let set = false;
-let completed = false;
 let challengesList = document.getElementById("challengeList");
 let errorList = document.getElementById("errorList");
 let loader = document.getElementById("loader");
-//let score = 4;
-let correctScore = 0;
-let wrongScore = 0;
-let skipScore = 0;
-
 
 function redirect(url) {
     window.location.href = url.toString();

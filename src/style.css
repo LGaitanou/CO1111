@@ -16,7 +16,6 @@ header {
 body {  /* The body tag of all pages */
     margin: 0px;
     padding: 0px;
-
     background-image: url("download.jpg");
 }
 
@@ -57,10 +56,6 @@ margin: 30px;
     text-decoration: none;
 }
 
-li {
-    /*border-width: ;*/
-}
-
 #enterName {
     display: var(--pop-up);
     /*position: fixed;
@@ -74,6 +69,11 @@ li {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+}
+
+#tutorial {
+    margin-left: 40px;
+    margin-right: 40px;
 }
 
 #title {

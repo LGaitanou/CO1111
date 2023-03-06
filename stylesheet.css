@@ -47,6 +47,7 @@ body {
     font-size: large;
 }
 
+
 #about-button:link {
     text-decoration: none;
 }
@@ -95,6 +96,7 @@ body {
     text-decoration: none;
 }
 
+
 #footer {
     padding: 20px;
     text-align: center;
@@ -103,6 +105,8 @@ body {
 #copyright {
     color: steelblue;
 }
+
+
 
 /*
 The following are for the about page

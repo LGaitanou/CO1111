@@ -1,9 +1,9 @@
-* {
-    font-family: Cascadia Code, serif;
-}
-
 :root {
     --pop-up: block;
+}
+
+* {
+    font-family: Cascadia Code;
 }
 
 header {
@@ -22,6 +22,39 @@ body {  /* The body tag of all pages */
 
 #challengeList {
     list-style: none;
+}
+
+#challengeList li{
+margin: 30px;
+}
+
+#challengeList li a{
+    background-color: transparent;
+    color: black;
+    background-size: 1px;
+    border: 3px solid black;
+    border-radius: 25px;
+    padding: 10px;
+    width: 200px;
+    height: 150px;
+    font-size: large;
+
+}
+
+#challengeList li a:link {
+    text-decoration: none;
+}
+
+#challengeList li a:visited {
+    text-decoration: none;
+}
+
+#challengeList li a:hover {
+    text-decoration: none;
+}
+
+#challengeList li a:active {
+    text-decoration: none;
 }
 
 li {
@@ -98,6 +131,8 @@ h3 {
 
 #errorList {
     list-style: none;
+    font-weight: bold;
+    color: #CC5801;
 }
 
 #skipButton {

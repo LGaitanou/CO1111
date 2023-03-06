@@ -35,13 +35,16 @@ body {
 }
 
 #about-button{
-    background-color: transparent;
+    background-color: darkgray;
     color: black;
     background-size: 100px;
     position: center;
-    border: 3px black;
     padding: 10px;
-    font-size: medium;
+    border: 2px solid black;
+    border-radius: 40px;
+    width: 100px;
+    height: 70px;
+    font-size: large;
 }
 
 #about-button:link {

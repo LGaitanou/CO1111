@@ -19,6 +19,11 @@ body {  /* The body tag of all pages */
     background-image: url("download.jpg");
 }
 
+.abcdAns.submit{
+    margin-left: 20px;
+    width: 200px;
+}
+
 #challengeList {
     list-style: none;
 }

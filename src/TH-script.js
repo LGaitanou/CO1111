@@ -161,15 +161,9 @@ function skipQuestion() {
             .then(response => response.json())
             .then(jsonObject => {
                 if (jsonObject.status === "OK") {
-                    let scoreQ = document.getElementById("score");
-                    scoreQ.innerHTML += jsonObject.scoreAdjustment;
-                    //setCookie("message", jsonObject.message, 365);
-                    //let score = document.getElementById("score");
-                    //score.innerHTML += jsonObject.scoreAdjustment;
-                    //updateScore(jsonObject.scoreAdjustment);
                     let me = document.getElementById("message");
                     me.innerHTML = jsonObject.message;
-                    if (jsonObject.completed) completed = true;
+                    if (jsonObject.completed) window.location.href = "leaderboard.html";
                     location.reload();
                 }
                 else {
@@ -182,15 +176,31 @@ function skipQuestion() {
 }
 
 function getLeaderboard() {
-
-}
-
-function updateScore(adjustment) {
-    let score = Number(getCookie("cookie"));
-    alert(getCookie("cookie"));//
-    score += adjustment;
-    setCookie("cookie", score, 365);
-    alert(getCookie("cookie"));//
+    fetch(TH_BASE_URL + "leaderboard?session=" + getCookie("session") + "&sorted&limit=20")
+        .then(response => response.json())
+        .then(jsonObject => {
+            if (jsonObject.status === "OK") {
+                // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
+                let dateOptions = { second: "2-digit", minute: "2-digit",  hour: "2-digit", day: "numeric", month: "short"};
+                let lArray = jsonObject.leaderboard;
+                let tableHtml = "";
+                for (let i = 0; i < lArray.length; i++) {
+                    let readableDate = new Date(lArray[i].completionTime);  // Convert the epoch time to readable time
+                    let modifiedDate = readableDate.toLocaleDateString("en-UK", dateOptions);  // Modify the readable time to show it in the table
+                    tableHtml += "<tr>\n" +
+                        "<td>" + lArray[i].player + "</td>" +
+                        "<td>" + lArray[i].score + "</td>" +
+                        "<td>" + modifiedDate + "</td>" +
+                        "</td>";
+                }
+                document.getElementById("leaderboardTable").innerHTML = tableHtml;
+            }
+            else {
+                for (let i = 0; i < jsonObject.errorMessages.length; i++) {
+                    alert(jsonObject.errorMessages[i]);
+                }
+            }
+        });
 }
 
 function setQuestionInterface(type) {
@@ -231,13 +241,6 @@ function setQuestionInterface(type) {
         t.style.display = "block";
     }
 }
-
-
-// leaderboard
-if (completed) {
-    alert("Finished");
-}
-
 
 // Functions to handle cookies taken from w3schools
 // https://www.w3schools.com/js/js_cookies.asp

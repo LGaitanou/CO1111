@@ -21,11 +21,20 @@ body {  /* The body tag of all pages */
 
 .abcdAns.submit{
     margin-left: 20px;
-    width: 70px;
-    height: 70px;
-    font-size: x-large;
-}
+    border-radius: 25px;
+    padding: 10px;
+    width: 100px;
+    height: 50px;
+    font-size: larger;
 
+}
+.boolAns.submit{
+    border-radius: 25px;
+    padding: 10px;
+    width: 100px;
+    height: 50px;
+    font-size: medium;
+}
 
 #challengeList {
     list-style: none;

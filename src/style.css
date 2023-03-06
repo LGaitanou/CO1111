@@ -1,9 +1,9 @@
-:root {
-    --pop-up: block;
+* {
+    font-family: Cascadia Code, serif;
 }
 
-* {
-    font-family: Cascadia Code;
+:root {
+    --pop-up: block;
 }
 
 header {

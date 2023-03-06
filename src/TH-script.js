@@ -76,11 +76,10 @@ function getQuestions() {
         .then(response => response.json())
         .then(jsonObject => {
             if (jsonObject.status === "OK") {
-                if(!set) {
-                    setInterval(getLocation, 31000);
-                    //setCookie("cookie", 0, 365);
-                    set = true;
-                }
+                setQuestionInterface(jsonObject.questionType);
+                setInterval(getLocation, 31000);
+                if (jsonObject.requiresLocation) getLocation();
+
 
                 // Makes the skip button appear or disappear
                 if (jsonObject.canBeSkipped) document.getElementById("skipButton").style.display = "block";
@@ -96,7 +95,7 @@ function getQuestions() {
                 question.innerHTML = jsonObject.questionText;
 
                 console.log(jsonObject);
-                setQuestionInterface(jsonObject.questionType);
+
 
                 if (jsonObject.completed) {
                     document.cookie = "session =; expires=Wed, 31 Oct 2012 08:50:17 UTC;";

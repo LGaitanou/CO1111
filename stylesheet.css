@@ -28,6 +28,7 @@ body {
     padding: 40px;
     text-align: center;
 }
+
 #welcome-message, #description {
     color: black;
     font-weight: bold;

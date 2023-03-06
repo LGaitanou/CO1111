@@ -21,8 +21,11 @@ body {  /* The body tag of all pages */
 
 .abcdAns.submit{
     margin-left: 20px;
-    width: 200px;
+    width: 70px;
+    height: 70px;
+    font-size: x-large;
 }
+
 
 #challengeList {
     list-style: none;

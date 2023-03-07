@@ -28,6 +28,8 @@ body {  /* The body tag of all pages */
     font-size: larger;
 
 }
+
+
 .boolAns.submit{
     border-radius: 25px;
     padding: 10px;
@@ -208,16 +210,16 @@ h3 {
 }
 
 table {
-    border: 1px solid black;
+    border: 2px solid #7A3803;
     text-align: center;
     font-size: x-large;
-    padding: 5px;
+    padding: 2px;
 }
 
 th {
-    border: 1px solid black;
+    border: 2px solid #7A3803;
 }
 
 td {
-    border: 1px solid black;
+    border: 2px solid #7A3803;
 }

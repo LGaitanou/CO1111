@@ -214,18 +214,32 @@ h3 {
 }
 
 table {
-    border: 2px solid #7A3803;
+    /* border: 2px solid #7A3803; */
     text-align: center;
     font-size: x-large;
-    padding: 2px;
+    /* padding: 2px; */
 }
 
 th {
     border: 2px solid #7A3803;
-    padding: 5px;
+    /* padding: 5px; */
 }
 
 td {
     border: 2px solid #7A3803;
-    padding: 5px;
+    /* padding: 5px; */
+}
+
+/* For small mobile phones */
+@media screen and (max-width: 400px) {
+    table {
+        /* border: 2px solid #7A3803; */
+
+        font-size: medium;
+        /* padding: 2px; */
+    }
+}
+
+tr {
+
 }

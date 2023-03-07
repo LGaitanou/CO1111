@@ -173,6 +173,7 @@ function getLeaderboard() {
         .then(response => response.json())
         .then(jsonObject => {
             if (jsonObject.status === "OK") {
+                loader.hidden = true;
                 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
                 let dateOptions = { second: "2-digit", minute: "2-digit",  hour: "2-digit", day: "numeric", month: "short"};
                 let lArray = jsonObject.leaderboard;
@@ -186,7 +187,7 @@ function getLeaderboard() {
                         "<td>" + modifiedDate + "</td>" +
                         "</td>";
                 }
-                document.getElementById("leaderboardTable").innerHTML = tableHtml;
+                document.getElementById("leaderboardTable").innerHTML += tableHtml;
             }
             else {
                 for (let i = 0; i < jsonObject.errorMessages.length; i++) {

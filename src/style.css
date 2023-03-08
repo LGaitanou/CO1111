@@ -43,7 +43,7 @@ body {  /* The body tag of all pages */
 }
 
 #challengeList li{
-margin: 30px;
+    margin: 30px 0px 30px 0px;
 }
 
 #challengeList li a{
@@ -119,6 +119,10 @@ margin: 30px;
     100% { transform: rotate(360deg); }
 }
 
+#question {
+    font-size: xx-large;
+}
+
 /* The Back button */
 #back, #reload {
     margin-top: 25px;
@@ -169,6 +173,10 @@ h3 {
         margin-top: 40px;
         font-size: 15px;
     }
+
+    #question {
+        font-size: large;
+    }
 }
 
 .score {
@@ -191,7 +199,7 @@ h3 {
 
 .center {
     margin: auto;
-    width: 60%;
+    width: 70%;
     padding: 10px;
     text-align: center;
 }
@@ -230,13 +238,10 @@ td {
     /* padding: 5px; */
 }
 
-/* For small mobile phones */
+/* Leaderboard for small mobile phones */
 @media screen and (max-width: 400px) {
     table {
-        /* border: 2px solid #7A3803; */
-
         font-size: medium;
-        /* padding: 2px; */
     }
 }
 

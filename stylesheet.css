@@ -106,33 +106,3 @@ body {
     color: steelblue;
 }
 
-
-
-/*
-The following are for the about page
- */
-
-#Names{
-    color: #242526;
-}
-
-.Names{
-    color: #242526;
-}
-
-footer{
-    height: 200px;
-    position: sticky;
-    top: auto;
-    margin-top: 50px;
-    padding-top: 100px;
-}
-
-.Logo{
-    position: absolute;
-    right: 0px;
-    bottom: 10px;
-    left: 1400px;
-}
-
-

@@ -1,29 +1,28 @@
 const TH_BASE_URL = "https://codecyprus.org/th/api/"; // the true API base url
 const TH_TEST_URL = "https://codecyprus.org/th/test-api/"; // the test API base url
-let challengesList = document.getElementById("challengeList");
-let errorList = document.getElementById("errorList");
-let loader = document.getElementById("loader");
+let challengesList = document.getElementById("challengeList");  // List the available THs in here
+let errorList = document.getElementById("errorList");  // Display the errors that the API gives in the "app" page
+let loader = document.getElementById("loader");  // The loading icon
 
-function redirect(url) {
-    window.location.href = url.toString();
-}
-
+// Lists the challenges in the "app" page
 function getChallenges() {
-    fetch(TH_BASE_URL + "list")
-        .then(response => response.json()) //Parse JSON text to JavaScript object
+    fetch(TH_BASE_URL + "list")  // Get the response from the server
+        .then(response => response.json()) // Parse JSON text to JavaScript object
         .then(jsonObject => {
-            loader.hidden = true;
-            if (jsonObject.status === "OK") {
-                let THArray = jsonObject.treasureHunts;
-                console.log(THArray);
+            loader.hidden = true;  // When we finish fetching the response, hide the loading icon
+            if (jsonObject.status === "OK") {  // If we successfully got the response we wanted
+                let THArray = jsonObject.treasureHunts;  // Get the array of available THs
+
+                // For every treasure hunt create a "li" element, insert the TH link into it, then place the li into the unordered list that already exists in the app page
                 for (let i = 0; i < THArray.length; i++) {
                     let listItem = document.createElement("li");
                     let uuid = THArray[i].uuid;
-                    console.log(uuid);
                     listItem.innerHTML = "<a href=\"javascript:select(\'" + uuid + "\')\">" + THArray[i].name + "</a>";
                     challengesList.appendChild(listItem);
                 }
             }
+
+            // If the response failed, display the errors in the page
             else {
                 for (let error in jsonObject.errorMessages) {
                     let listItem = document.createElement("li");
@@ -40,19 +39,19 @@ const params = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),
 });
 
-// Get the name of the team
+// Get the name of the team rom the URL
 let teamName = params.name;
 if (!(teamName === null)) setCookie("name", teamName, 365);
 
+// When a TH is available and clicked, start the session
 function select(uuid) {
     errorList.innerHTML = " ";
-    console.log("ENTERED")
     fetch(TH_BASE_URL + "start?player=" + getCookie("name") + "&app=TH-Team6&treasure-hunt-id=" + uuid)
         .then(response => response.json())
         .then(jsonObject => {
             if (jsonObject.status === "OK") {
-                setCookie("session", jsonObject.session, 365);
-                redirect("session.html");
+                setCookie("session", jsonObject.session, 365);  // Set the session cookie
+                window.location.href = "session.html";  // Go to the page that displays the questions
             }
             else {
                 for (let i = 0; i < jsonObject.errorMessages.length; i++) {
@@ -64,38 +63,41 @@ function select(uuid) {
         });
 }
 
+// Get the next question and display it on screen
 function getQuestions() {
     fetch(TH_BASE_URL + "question?session=" + getCookie("session"))
         .then(response => response.json())
         .then(jsonObject => {
             if (jsonObject.status === "OK") {
                 setQuestionInterface(jsonObject.questionType);
-                setInterval(getLocation, 31000);
+                setInterval(getLocation, 30100);  // Update the location every 30 seconds
                 if (jsonObject.requiresLocation) getLocation();
-
 
                 // Makes the skip button appear or disappear
                 if (jsonObject.canBeSkipped) document.getElementById("skipButton").style.display = "block";
                 else document.getElementById("skipButton").style.display = "none";
 
+                // Displays how many questions the user completed
                 let numOfQuestions = document.getElementById("numOfQuestions");
                 numOfQuestions.innerHTML = jsonObject.numOfQuestions;
 
+                // Displays how many questions are left
                 let completedQuestions = document.getElementById("completedQuestions");
                 completedQuestions.innerText = jsonObject.currentQuestionIndex;
 
+                // // Displays the question
                 let question = document.getElementById("question");
                 question.innerHTML = jsonObject.questionText;
 
-                console.log(jsonObject);
-
-
+                // If the session has ended, go to the leaderboard
                 if (jsonObject.completed) {
                     document.cookie = "session =; expires=Wed, 31 Oct 2012 08:50:17 UTC;";
                     window.location.href = "leaderboard.html";
                 }
-                showScore();
+                showScore();  // Continuously show the score
             }
+
+            // Alert the user of the errors
             else {
                 for (let i = 0; i < jsonObject.errorMessages.length; i++) {
                     alert(jsonObject.errorMessages[i]);
@@ -104,20 +106,32 @@ function getQuestions() {
         });
 }
 
+// Handles the answer to the current question
 function answerQuestion(answer) {
     console.log(answer);
     fetch(TH_BASE_URL + "answer?session=" + getCookie("session") + "&answer=" + answer)
         .then(response => response.json())
         .then(jsonObject => {
             if (jsonObject.status === "OK") {
-                let me = document.getElementById("message");
-                me.innerHTML = jsonObject.message;
+
+                // If session is over
                 if (jsonObject.completed) {
                     document.cookie = "session =; expires=Wed, 31 Oct 2012 08:50:17 UTC;";
                     window.location.href = "leaderboard.html";
                 }
                 showScore();
-                if (jsonObject.correct) location.reload();
+
+                // Answer was correct, so alert the user as so and go to the next one
+                if (jsonObject.correct) {
+                    alert(jsonObject.message);
+                    location.reload();
+                }
+
+                // Answer was false, so massage the user in the page as so, then do not change the page
+                else {
+                    let me = document.getElementById("message");
+                    me.innerHTML = jsonObject.message;
+                }
             }
             else {
                 for (let i = 0; i < jsonObject.errorMessages.length; i++) {
@@ -127,6 +141,7 @@ function answerQuestion(answer) {
             });
 }
 
+// Corrects the score after each question
 function showScore() {
     fetch(TH_BASE_URL + "score?session=" + getCookie("session"))
         .then(response => response.json())
@@ -134,6 +149,8 @@ function showScore() {
             if (jsonObject.status === "OK") {
                 let scoreQ = document.getElementById("score");
                 scoreQ.innerHTML = jsonObject.score;
+
+                // If the session has run out of time, leave the session
                 if (jsonObject.finished) {
                     alert("You have run out of time!");
                     window.location.href = "name.html";
@@ -147,6 +164,7 @@ function showScore() {
         });
 }
 
+// Skip the question
 function skipQuestion() {
     if (confirm("Do you want to skip the question?")) {
         let s = getCookie("session");
@@ -154,8 +172,7 @@ function skipQuestion() {
             .then(response => response.json())
             .then(jsonObject => {
                 if (jsonObject.status === "OK") {
-                    let me = document.getElementById("message");
-                    me.innerHTML = jsonObject.message;
+                    alert(jsonObject.message);
                     if (jsonObject.completed) window.location.href = "leaderboard.html";
                     location.reload();
                 }
@@ -168,26 +185,30 @@ function skipQuestion() {
     }
 }
 
+// Gets the leaderboard information, displays it on screen
 function getLeaderboard() {
     fetch(TH_BASE_URL + "leaderboard?session=" + getCookie("session") + "&sorted&limit=20")
         .then(response => response.json())
         .then(jsonObject => {
             if (jsonObject.status === "OK") {
                 loader.hidden = true;
+
                 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
-                let dateOptions = { second: "2-digit", minute: "2-digit",  hour: "2-digit", day: "numeric", month: "short"};
+                let dateOptions = { second: "2-digit", minute: "2-digit",  hour: "2-digit", day: "numeric", month: "short"};  // Helps convert the epoch time into readable text
                 let lArray = jsonObject.leaderboard;
                 let tableHtml = "";
+
+                // Loop to create a row for every entry in the leaderboard
                 for (let i = 0; i < lArray.length; i++) {
                     let readableDate = new Date(lArray[i].completionTime);  // Convert the epoch time to readable time
                     let modifiedDate = readableDate.toLocaleDateString("en-UK", dateOptions);  // Modify the readable time to show it in the table
                     tableHtml += "<tr>\n" +
-                        "<td>" + lArray[i].player + "</td>" +
-                        "<td>" + lArray[i].score + "</td>" +
-                        "<td>" + modifiedDate + "</td>" +
+                        "<td>" + lArray[i].player + "</td>" +  // Insert the name in the row
+                        "<td>" + lArray[i].score + "</td>" +  // Insert the score in the row
+                        "<td>" + modifiedDate + "</td>" +  // Insert the date in the row
                         "</td>";
                 }
-                document.getElementById("leaderboardTable").innerHTML += tableHtml;
+                document.getElementById("leaderboardTable").innerHTML += tableHtml;  // Update the table with the changes
             }
             else {
                 for (let i = 0; i < jsonObject.errorMessages.length; i++) {
@@ -197,6 +218,7 @@ function getLeaderboard() {
         });
 }
 
+// Alter the input procedure for every different kind of question
 function setQuestionInterface(type) {
     let b = document.getElementById("boolean");
     let i = document.getElementById("integer");

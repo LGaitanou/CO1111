@@ -260,7 +260,7 @@ function setQuestionInterface(type) {
 
 // Functions to handle cookies taken from w3schools
 // https://www.w3schools.com/js/js_cookies.asp
-//////////////////////////////////////////////////
+/////////////////////////////////////////////////////
 
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();

@@ -1,30 +1,46 @@
 //Testing the JS script
+const puppeteer = require('puppeteer');
+const assert = require('assert');
 
-const form = document.querySelector('form');
-const emailInput = document.getElementById('email');
-const passwordInput = document.getElementById('password');
-const loginBtn = document.getElementById('login-btn');
+describe('Session page', function() {
+    let browser;
+    let page;
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = emailInput.value;
-    const password = passwordInput.value;
-    fetch('/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password })
-    })
-        .then(response => response.json())
-        .then(data => {
-            // check if login was successful or not
-            if (data.success) {
-                // redirect to the game app
-                window.location.href = '/game';
-            } else {
-                alert('Invalid email/password. Please try again.');
-            }
-        })
-        .catch(error => console.error(error));
+    before(async function() {
+        browser = await puppeteer.launch();
+        page = await browser.newPage();
+        await page.goto('http://localhost:3000/session.html');
+    });
+
+    after(async function() {
+        await browser.close();
+    });
+
+    it('should display the correct number of questions', async function() {
+        const numOfQuestions = await page.$eval('#numOfQuestions', el => el.textContent.trim());
+        assert.strictEqual(numOfQuestions, 'Number of Questions: 10');
+    });
+
+    it('should display a question when the page is loaded', async function() {
+        const question = await page.$eval('#question', el => el.textContent.trim());
+        assert.notStrictEqual(question, '');
+    });
+
+    it('should display the correct score when a question is answered correctly', async function() {
+        await page.click('.boolAns[value="true"]');
+        const score = await page.$eval('#score', el => el.textContent.trim());
+        assert.strictEqual(score, '1');
+    });
+
+    it('should display the correct message when a question is answered incorrectly', async function() {
+        await page.click('.abcdAns[value="C"]');
+        const message = await page.$eval('#message', el => el.textContent.trim());
+        assert.strictEqual(message, 'Incorrect. The correct answer is D.');
+    });
+
+    it('should skip a question when the skip button is clicked', async function() {
+        await page.click('#skipButton');
+        const completedQuestions = await page.$eval('#completedQuestions', el => el.textContent.trim());
+        assert.strictEqual(completedQuestions, '1');
+    });
 });

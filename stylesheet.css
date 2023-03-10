@@ -112,6 +112,7 @@ body {
     margin: 0;
     padding: 0;
 }
+
 .container {
     max-width: 600px;
     margin: 0 auto;
@@ -121,12 +122,14 @@ body {
     border-radius: 10px;
     text-align: center;
 }
+
 h1 {
     font-size: 36px;
     color: #333;
     margin-top: 0;
     margin-bottom: 20px;
 }
+
 input[type=text] {
     padding: 10px;
     font-size: 16px;
@@ -136,6 +139,7 @@ input[type=text] {
     width: 100%;
     box-sizing: border-box;
 }
+
 button {
     background-color: #4CAF50;
     color: white;
@@ -157,4 +161,8 @@ button:hover {
     margin-top: 20px;
     margin-bottom: 0;
     display: none;
+}
+
+.Contribution{
+    margin-left: 50px;
 }

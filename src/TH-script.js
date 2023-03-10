@@ -1,8 +1,12 @@
-const TH_BASE_URL = "https://codecyprus.org/th/api/"; // the true API base url
+let TH_BASE_URL = "https://codecyprus.org/th/api/"; // the true API base url
 const TH_TEST_URL = "https://codecyprus.org/th/test-api/"; // the test API base url
 let challengesList = document.getElementById("challengeList");  // List the available THs in here
 let errorList = document.getElementById("errorList");  // Display the errors that the API gives in the "app" page
 let loader = document.getElementById("loader");  // The loading icon
+
+function isTest() {
+    TH_BASE_URL = "https://codecyprus.org/th/test-api/";
+}
 
 // Lists the challenges in the "app" page
 function getChallenges() {
@@ -151,10 +155,10 @@ function showScore() {
                 scoreQ.innerHTML = jsonObject.score;
 
                 // If the session has run out of time, leave the session
-                if (jsonObject.finished) {
+                /*if (jsonObject.finished) {
                     alert("You have run out of time!");
                     window.location.href = "name.html";
-                }
+                }*/
             }
             else {
                 for (let i = 0; i < jsonObject.errorMessages.length; i++) {
@@ -258,9 +262,9 @@ function setQuestionInterface(type) {
     }
 }
 
+/////////////////////////////////////////////////////
 // Functions to handle cookies taken from w3schools
 // https://www.w3schools.com/js/js_cookies.asp
-/////////////////////////////////////////////////////
 
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
@@ -296,8 +300,8 @@ function checkCookie() {
     }
 }
 
-// Functions to handle the position of the user in real time
 //////////////////////////////////////
+// Functions to handle the position of the user in real time
 
 function getLocation() {
     if (navigator.geolocation) {
@@ -312,4 +316,52 @@ function updatePosition(position) {
     fetch(TH_BASE_URL + "location?session=" +  +"&latitude= + " + position.coords.latitude + "&longitude=" + position.coords.longitude)
 }
 
+
 /////////////////////////////////////
+// Code to enable the QR code reader
+
+var opts = {
+    // Whether to scan continuously for QR codes. If false, use scanner.scan() to
+    // manually scan. If true, the scanner emits the "scan" event when a QR code is
+    // scanned. Default true.
+    continuous: true,
+    // The HTML element to use for the camera's video preview. Must be a <video>
+    // element. When the camera is active, this element will have the "active" CSS
+    // class, otherwise, it will have the "inactive" class. By default, an invisible
+    // element will be created to host the video.
+    video: document.getElementById('preview'),
+    // Whether to horizontally mirror the video preview. This is helpful when trying to
+    // scan a QR code with a user-facing camera. Default true.
+    mirror: true,
+    // Whether to include the scanned image data as part of the scan result. See the
+    // "scan" event for image format details. Default false.
+    captureImage: false,
+    // Only applies to continuous mode. Whether to actively scan when the tab is not
+    // active.
+    // When false, this reduces CPU usage when the tab is not active. Default true.
+    backgroundScan: true,
+    // Only applies to continuous mode. The period, in milliseconds, before the same QR
+    // code will be recognized in succession. Default 5000 (5 seconds).
+    refractoryPeriod: 5000,
+    // Only applies to continuous mode. The period, in rendered frames, between scans. A
+    // lower scan period increases CPU usage but makes scan response faster.
+    // Default 1 (i.e. analyze every frame).
+    scanPeriod: 1
+};
+
+var scanner = new Instascan.Scanner(opts);
+
+Instascan.Camera.getCameras().then(function (cameras) {
+    if (cameras.length > 0) {
+        scanner.start(cameras[0]);
+    } else {
+        console.error('No cameras found.');
+        alert("No cameras found.");
+    }
+}).catch(function (e) {
+    console.error(e);
+});
+
+scanner.addEventListener('scan', function (content) {
+    document.getElementById("hint").innerHTML = content;
+});

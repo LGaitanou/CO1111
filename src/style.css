@@ -26,7 +26,6 @@ body {  /* The body tag of all pages */
     width: 100px;
     height: 50px;
     font-size: larger;
-
 }
 
 
@@ -77,9 +76,6 @@ body {  /* The body tag of all pages */
 
 #enterName {
     display: var(--pop-up);
-    /*position: fixed;
-    right: 700px;
-    top: 300px;*/
     background-color: white;
     height: 400px;
     width: 500px;
@@ -245,6 +241,10 @@ td {
     }
 }
 
-tr {
-
+#skipButton {
+    border-radius: 25px;
+    padding: 10px;
+    width: 100px;
+    height: 50px;
+    font-size: medium;
 }

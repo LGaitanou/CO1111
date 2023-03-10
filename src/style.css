@@ -161,6 +161,17 @@ h3 {
     padding: 10px;
     text-align: center;
     width: 50px;
+    border-radius: 25px;
+}
+
+.submit {
+    border: 1px solid dimgrey;
+    background-color: black;
+    color: navajowhite;
+    padding: 10px;
+    text-align: center;
+    width: 50px;
+    border-radius: 25px;
 }
 
 /* For mobile phones */
@@ -241,10 +252,3 @@ td {
     }
 }
 
-#skipButton {
-    border-radius: 25px;
-    padding: 10px;
-    width: 100px;
-    height: 50px;
-    font-size: medium;
-}

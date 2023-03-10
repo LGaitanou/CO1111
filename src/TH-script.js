@@ -4,7 +4,7 @@ let challengesList = document.getElementById("challengeList");  // List the avai
 let errorList = document.getElementById("errorList");  // Display the errors that the API gives in the "app" page
 let loader = document.getElementById("loader");  // The loading icon
 let camera = document.getElementById("preview");
-camera.hidden = true;
+if (!(camera === null)) camera.hidden = true;
 
 /*function isTest() {
     TH_BASE_URL = "https://codecyprus.org/th/test-api/";

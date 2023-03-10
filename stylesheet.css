@@ -152,9 +152,11 @@ button {
     width: 100%;
     box-sizing: border-box;
 }
+
 button:hover {
     background-color: #3e8e41;
 }
+
 #greeting {
     font-size: 24px;
     color: #333;
@@ -163,6 +165,16 @@ button:hover {
     display: none;
 }
 
-.Contribution{
-    margin-left: 50px;
+#Contribution{
+    background-color: darkgray;
+    border-radius: 25px;
+    padding: 20px;
+    margin-left: 500px;
+}
+
+#Names1{
+    background-color: darkgray;
+    border-radius: 25px;
+    padding: 20px;
+    width: 300px;
 }

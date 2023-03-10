@@ -1,12 +1,14 @@
-let TH_BASE_URL = "https://codecyprus.org/th/api/"; // the true API base url
+const TH_BASE_URL = "https://codecyprus.org/th/api/"; // the true API base url
 const TH_TEST_URL = "https://codecyprus.org/th/test-api/"; // the test API base url
 let challengesList = document.getElementById("challengeList");  // List the available THs in here
 let errorList = document.getElementById("errorList");  // Display the errors that the API gives in the "app" page
 let loader = document.getElementById("loader");  // The loading icon
+let camera = document.getElementById("preview");
+camera.hidden = true;
 
-function isTest() {
+/*function isTest() {
     TH_BASE_URL = "https://codecyprus.org/th/test-api/";
-}
+}*/
 
 // Lists the challenges in the "app" page
 function getChallenges() {
@@ -16,7 +18,7 @@ function getChallenges() {
             loader.hidden = true;  // When we finish fetching the response, hide the loading icon
             if (jsonObject.status === "OK") {  // If we successfully got the response we wanted
                 let THArray = jsonObject.treasureHunts;  // Get the array of available THs
-
+                console.log(jsonObject);
                 // For every treasure hunt create a "li" element, insert the TH link into it, then place the li into the unordered list that already exists in the app page
                 for (let i = 0; i < THArray.length; i++) {
                     let listItem = document.createElement("li");

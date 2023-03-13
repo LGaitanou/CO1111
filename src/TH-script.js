@@ -3,6 +3,16 @@ const TH_TEST_URL = "https://codecyprus.org/th/test-api/"; // the test API base 
 let challengesList = document.getElementById("challengeList");  // List the available THs in here
 let errorList = document.getElementById("errorList");  // Display the errors that the API gives in the "app" page
 let loader = document.getElementById("loader");  // The loading icon
+let cameraBox = document.getElementById("cameraBox");
+
+if (!(cameraBox === null)) {
+    no = document.getElementById("noCamera");
+    no.hidden = !no.hidden;
+    cameraBox.hidden = true;
+    cameraBox.style.width = (getWidth() - 60) + "px";
+    cameraBox.style.height = (getHeight() - 300) + "px";
+}
+
 let camera = document.getElementById("preview");
 if (!(camera === null)) camera.hidden = true;
 
@@ -367,3 +377,26 @@ Instascan.Camera.getCameras().then(function (cameras) {
 scanner.addEventListener('scan', function (content) {
     document.getElementById("hint").innerHTML = content;
 });
+
+//////////////////////////////
+// Get the dimensions of the page
+
+function getWidth() {
+    return Math.max(
+        document.body.scrollWidth,
+        document.documentElement.scrollWidth,
+        document.body.offsetWidth,
+        document.documentElement.offsetWidth,
+        document.documentElement.clientWidth
+    );
+}
+
+function getHeight() {
+    return Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight,
+        document.documentElement.clientHeight
+    );
+}

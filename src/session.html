@@ -11,8 +11,10 @@
 
 <header>
     <img src="Team6Logo.jpg" alt="Treasure Hunt Team 6 Logo" width="100" height="100">
+
     <a href="app.html" id="back"><b>BACK</b></a>
     <a href="session.html" id="reload"><b>RELOAD</b></a>
+    <b id="QRcode" onclick="if (cameraBox.hidden) cameraBox.hidden = false; else cameraBox.hidden = true;">QR CODE</b>
 </header>
 
 <!-- Score Display-->
@@ -29,11 +31,16 @@
 <div class="questionsNum" style="width: 4px; font-weight: bold;">Questions: </div>
 </div>
 
+<div id="cameraBox">
+    <p id="noCamera">No Camera Available</p>
+    <video id="preview"></video>
+</div>
+
 <div id="message" class="center"></div>
 
 <div id="question" class="center"></div>
 
-<video id="preview"></video>
+
 
 <div id="questionTypes" class="center">
 <div id="boolean">

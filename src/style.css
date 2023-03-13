@@ -1,7 +1,3 @@
-:root {
-    --pop-up: block;
-}
-
 * {
     font-family: Times, "Times New Roman", Georgia, serif;
 }
@@ -10,7 +6,6 @@ header {
     height: 100px;
     max-width: 100%;
     background-image: url("images.jpg");
-
 }
 
 body {  /* The body tag of all pages */
@@ -75,7 +70,7 @@ body {  /* The body tag of all pages */
 }
 
 #enterName {
-    display: var(--pop-up);
+    display: block;
     background-color: white;
     height: 400px;
     width: 500px;
@@ -119,13 +114,20 @@ body {  /* The body tag of all pages */
     font-size: xx-large;
 }
 
-/* The Back button */
-#back, #reload {
-    margin-top: 25px;
+
+
+/* The Header buttons */
+#back, #reload, #QRcode {
+    margin-top: 40px;
     margin-right: 25px;
     float: right;
     color: antiquewhite;
     font-size: 30px;
+}
+
+#QRcode {
+    margin-bottom: 10px;
+    font-size: 15px;
 }
 
 #back:link, #reload:link {
@@ -245,10 +247,32 @@ td {
     /* padding: 5px; */
 }
 
+#cameraBox {
+    position: absolute;
+    background-color: white;
+    height: 300px;
+    width: 400px;
+    border: black 6px solid;
+    margin: 100px 10px;
+    text-align: center;
+
+
+}
+
 /* Leaderboard for small mobile phones */
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 420px) {
     table {
         font-size: medium;
     }
+
+    #cameraBox {
+        width: 10px;
+    }
+
+    #back, #reload, #QRcode {
+        font-size: 10px;
+    }
 }
+
+
 

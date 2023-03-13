@@ -15,10 +15,20 @@ body {
 
 }
 
-header {
+.header {
     height: 30px;
     max-width: 100%;
     background-image: url("src/images.jpg");
+}
+
+#header {
+    padding: 20px;
+    text-align: center;
+}
+
+#footer {
+    padding: 20px;
+    text-align: center;
 }
 
 /* The Back button */
@@ -46,10 +56,8 @@ header {
     text-decoration: none;
 }
 
-#header {
-    padding: 20px;
-    text-align: center;
-}
+
+
 #title {
     font-size: 50px;
     font-weight: bold;
@@ -65,7 +73,7 @@ header {
 #welcome-message, #description {
     color: black;
     font-weight: bold;
-    height: 200px;
+
 }
 
 
@@ -133,10 +141,7 @@ header {
 }
 
 
-#footer {
-    padding: 20px;
-    text-align: center;
-}
+
 
 #copyright {
     color: steelblue;

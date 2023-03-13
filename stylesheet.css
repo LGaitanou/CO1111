@@ -223,3 +223,9 @@ button:hover {
     border-radius: 25px;
     padding: 20px;
 }
+
+@media screen and (max-width: 420px) {
+    #Start {
+        font-size: medium;
+    }
+}

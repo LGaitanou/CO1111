@@ -2,6 +2,7 @@
     font-family: Times, "Times New Roman", Georgia, serif;
 }
 
+/*Black wood background for only the header*/
 header {
     height: 100px;
     max-width: 100%;
@@ -32,10 +33,12 @@ body {  /* The body tag of all pages */
     font-size: medium;
 }
 
+
 #challengeList {
     list-style: none;
 }
 
+/*Customization for the question button*/
 #challengeList li{
     margin: 30px 0px 30px 0px;
 }
@@ -69,6 +72,7 @@ body {  /* The body tag of all pages */
     text-decoration: none;
 }
 
+/*Name picker box customization*/
 #enterName {
     display: block;
     background-color: white;
@@ -79,6 +83,7 @@ body {  /* The body tag of all pages */
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 40px;
 }
 
 #tutorial {

@@ -12,16 +12,15 @@ body {
     grid-template-rows: auto 1fr auto;
     background-image: url("download.jpg");
 
-
 }
 
-.header {
-    height: 30px;
+#black-background{
+    height: 100px;
     max-width: 100%;
     background-image: url("src/images.jpg");
 }
 
-#header {
+#headerr {
     padding: 20px;
     text-align: center;
 }
@@ -73,7 +72,6 @@ body {
 #welcome-message, #description {
     color: black;
     font-weight: bold;
-
 }
 
 

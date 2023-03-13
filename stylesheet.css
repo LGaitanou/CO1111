@@ -2,6 +2,7 @@
     font-family: Times, "Times New Roman", Georgia, serif;
 }
 
+/*Background placement*/
 body {
     margin: 0px;
     padding: 0px;
@@ -14,6 +15,7 @@ body {
 
 }
 
+/*Black wood background for only the header*/
 #black-background{
     height: 100px;
     max-width: 100%;
@@ -61,12 +63,12 @@ body {
     font-size: 50px;
     font-weight: bold;
 }
+
 #main-content {
     background-size: cover;
     background-position: center;
     padding: 40px;
     text-align: center;
-
 }
 
 #welcome-message, #description {
@@ -75,7 +77,7 @@ body {
 }
 
 
-
+/*About button customization*/
 #about-button{
     background-color: darkgray;
     color: black;
@@ -106,7 +108,7 @@ body {
     text-decoration: none;
 }
 
-
+/*Start button customization*/
 #Start {
     background-color: darkgray;
     margin-left: 0px;
@@ -145,12 +147,14 @@ body {
     color: steelblue;
 }
 
+
 body {
     font-family: Arial, sans-serif;
     background-color: #F5F5F5;
     margin: 0;
     padding: 0;
 }
+
 
 .container {
     max-width: 600px;
@@ -180,6 +184,7 @@ input[type=text] {
     box-sizing: border-box;
 }
 
+
 button {
     background-color: #4CAF50;
     color: white;
@@ -193,6 +198,7 @@ button {
     box-sizing: border-box;
 }
 
+
 button:hover {
     background-color: #3e8e41;
 }
@@ -204,6 +210,7 @@ button:hover {
     margin-bottom: 0;
     display: none;
 }
+
 
 #Contribution{
     background-color: darkgray;

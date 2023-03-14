@@ -6,8 +6,7 @@ let loader = document.getElementById("loader");  // The loading icon
 let cameraBox = document.getElementById("cameraBox");
 
 no = document.getElementById("noCamera");
-no.hidden = cameraBox !== null;
-no.hidden = !no.hidden;
+
 
 if (!(cameraBox === null)) {
 

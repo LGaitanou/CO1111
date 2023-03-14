@@ -3,6 +3,25 @@ const TH_TEST_URL = "https://codecyprus.org/th/test-api/"; // the test API base 
 let challengesList = document.getElementById("challengeList");  // List the available THs in here
 let errorList = document.getElementById("errorList");  // Display the errors that the API gives in the "app" page
 let loader = document.getElementById("loader");  // The loading icon
+let cameraBox = document.getElementById("cameraBox");
+
+no = document.getElementById("noCamera");
+no.hidden = cameraBox !== null;
+no.hidden = !no.hidden;
+
+if (!(cameraBox === null)) {
+
+    cameraBox.hidden = true;
+    cameraBox.style.width = (getWidth() - 60) + "px";
+    cameraBox.style.height = (getHeight() - 300) + "px";
+}
+
+let camera = document.getElementById("preview");
+if (!(camera === null)) camera.hidden = true;
+
+/*function isTest() {
+    TH_BASE_URL = "https://codecyprus.org/th/test-api/";
+}*/
 
 // Lists the challenges in the "app" page
 function getChallenges() {
@@ -12,7 +31,7 @@ function getChallenges() {
             loader.hidden = true;  // When we finish fetching the response, hide the loading icon
             if (jsonObject.status === "OK") {  // If we successfully got the response we wanted
                 let THArray = jsonObject.treasureHunts;  // Get the array of available THs
-
+                console.log(jsonObject);
                 // For every treasure hunt create a "li" element, insert the TH link into it, then place the li into the unordered list that already exists in the app page
                 for (let i = 0; i < THArray.length; i++) {
                     let listItem = document.createElement("li");
@@ -151,10 +170,10 @@ function showScore() {
                 scoreQ.innerHTML = jsonObject.score;
 
                 // If the session has run out of time, leave the session
-                if (jsonObject.finished) {
+                /*if (jsonObject.finished) {
                     alert("You have run out of time!");
                     window.location.href = "name.html";
-                }
+                }*/
             }
             else {
                 for (let i = 0; i < jsonObject.errorMessages.length; i++) {
@@ -187,7 +206,7 @@ function skipQuestion() {
 
 // Gets the leaderboard information, displays it on screen
 function getLeaderboard() {
-    fetch(TH_BASE_URL + "leaderboard?session=" + getCookie("session") + "&sorted&limit=20")
+    fetch(TH_BASE_URL + "leaderboard?session=" + getCookie("session") + "&sorted&limit=40")
         .then(response => response.json())
         .then(jsonObject => {
             if (jsonObject.status === "OK") {
@@ -258,9 +277,9 @@ function setQuestionInterface(type) {
     }
 }
 
+/////////////////////////////////////////////////////
 // Functions to handle cookies taken from w3schools
 // https://www.w3schools.com/js/js_cookies.asp
-/////////////////////////////////////////////////////
 
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
@@ -296,8 +315,8 @@ function checkCookie() {
     }
 }
 
-// Functions to handle the position of the user in real time
 //////////////////////////////////////
+// Functions to handle the position of the user in real time
 
 function getLocation() {
     if (navigator.geolocation) {
@@ -312,4 +331,75 @@ function updatePosition(position) {
     fetch(TH_BASE_URL + "location?session=" +  +"&latitude= + " + position.coords.latitude + "&longitude=" + position.coords.longitude)
 }
 
+
 /////////////////////////////////////
+// Code to enable the QR code reader
+
+var opts = {
+    // Whether to scan continuously for QR codes. If false, use scanner.scan() to
+    // manually scan. If true, the scanner emits the "scan" event when a QR code is
+    // scanned. Default true.
+    continuous: true,
+    // The HTML element to use for the camera's video preview. Must be a <video>
+    // element. When the camera is active, this element will have the "active" CSS
+    // class, otherwise, it will have the "inactive" class. By default, an invisible
+    // element will be created to host the video.
+    video: document.getElementById('preview'),
+    // Whether to horizontally mirror the video preview. This is helpful when trying to
+    // scan a QR code with a user-facing camera. Default true.
+    mirror: true,
+    // Whether to include the scanned image data as part of the scan result. See the
+    // "scan" event for image format details. Default false.
+    captureImage: false,
+    // Only applies to continuous mode. Whether to actively scan when the tab is not
+    // active.
+    // When false, this reduces CPU usage when the tab is not active. Default true.
+    backgroundScan: true,
+    // Only applies to continuous mode. The period, in milliseconds, before the same QR
+    // code will be recognized in succession. Default 5000 (5 seconds).
+    refractoryPeriod: 5000,
+    // Only applies to continuous mode. The period, in rendered frames, between scans. A
+    // lower scan period increases CPU usage but makes scan response faster.
+    // Default 1 (i.e. analyze every frame).
+    scanPeriod: 1
+};
+
+if (!(camera === null)) var scanner = new Instascan.Scanner(opts);
+
+Instascan.Camera.getCameras().then(function (cameras) {
+    if (cameras.length > 0) {
+        scanner.start(cameras[0]);
+    } else {
+        console.error('No cameras found.');
+        alert("No cameras found.");
+    }
+}).catch(function (e) {
+    console.error(e);
+});
+
+scanner.addEventListener('scan', function (content) {
+    document.getElementById("hint").innerHTML = content;
+});
+
+//////////////////////////////
+// Get the dimensions of the page
+
+function getWidth() {
+    return Math.max(
+        document.body.scrollWidth,
+        document.documentElement.scrollWidth,
+        document.body.offsetWidth,
+        document.documentElement.offsetWidth,
+        document.documentElement.clientWidth
+    );
+}
+
+function getHeight() {
+    return Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight,
+        document.documentElement.clientHeight
+    );
+}

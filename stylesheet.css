@@ -1,7 +1,8 @@
-*{
-   font-family: Cascadia Code;
+* {
+    font-family: Times, "Times New Roman", Georgia, serif;
 }
 
+/*Background placement*/
 body {
     margin: 0px;
     padding: 0px;
@@ -12,16 +13,57 @@ body {
     grid-template-rows: auto 1fr auto;
     background-image: url("download.jpg");
 
-
 }
-#header {
+
+/*Black wood background for only the header*/
+#black-background{
+    height: 100px;
+    max-width: 100%;
+    background-image: url("src/images.jpg");
+}
+
+#headerr {
     padding: 20px;
     text-align: center;
 }
+
+#footer {
+    padding: 20px;
+    text-align: center;
+}
+
+/* The Back button */
+#back, #reload {
+    margin-top: 25px;
+    margin-right: 25px;
+    float: right;
+    color: antiquewhite;
+    font-size: 30px;
+}
+
+#back:link, #reload:link {
+    text-decoration: none;
+}
+
+#back:visited, #reload:link {
+    text-decoration: none;
+}
+
+#back:hover, #reload:link {
+    text-decoration: none;
+}
+
+#back:active, #reload:link {
+    text-decoration: none;
+}
+
+
+
 #title {
     font-size: 50px;
     font-weight: bold;
 }
+
 #main-content {
     background-size: cover;
     background-position: center;
@@ -34,6 +76,8 @@ body {
     font-weight: bold;
 }
 
+
+/*About button customization*/
 #about-button{
     background-color: darkgray;
     color: black;
@@ -64,7 +108,7 @@ body {
     text-decoration: none;
 }
 
-
+/*Start button customization*/
 #Start {
     background-color: darkgray;
     margin-left: 0px;
@@ -97,14 +141,12 @@ body {
 }
 
 
-#footer {
-    padding: 20px;
-    text-align: center;
-}
+
 
 #copyright {
     color: steelblue;
 }
+
 
 body {
     font-family: Arial, sans-serif;
@@ -112,6 +154,8 @@ body {
     margin: 0;
     padding: 0;
 }
+
+
 .container {
     max-width: 600px;
     margin: 0 auto;
@@ -121,12 +165,15 @@ body {
     border-radius: 10px;
     text-align: center;
 }
+
+
 h1 {
     font-size: 36px;
     color: #333;
     margin-top: 0;
     margin-bottom: 20px;
 }
+
 input[type=text] {
     padding: 10px;
     font-size: 16px;
@@ -136,6 +183,8 @@ input[type=text] {
     width: 100%;
     box-sizing: border-box;
 }
+
+
 button {
     background-color: #4CAF50;
     color: white;
@@ -148,13 +197,36 @@ button {
     width: 100%;
     box-sizing: border-box;
 }
+
+
 button:hover {
     background-color: #3e8e41;
 }
+
 #greeting {
     font-size: 24px;
     color: #333;
     margin-top: 20px;
     margin-bottom: 0;
     display: none;
+}
+
+
+#Contribution{
+    background-color: darkgray;
+    border-radius: 25px;
+    padding: 20px;
+}
+
+#Names1{
+    background-color: darkgray;
+    border-radius: 25px;
+    padding: 20px;
+}
+
+/* when the width is 420px then the letters size is medium */
+@media screen and (max-width: 420px) {
+    #Start {
+        font-size: small;
+    }
 }

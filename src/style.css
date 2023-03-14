@@ -1,16 +1,12 @@
-:root {
-    --pop-up: block;
-}
-
 * {
-    font-family: Cascadia Code;
+    font-family: Times, "Times New Roman", Georgia, serif;
 }
 
+/*Black wood background for only the header*/
 header {
     height: 100px;
     max-width: 100%;
     background-image: url("images.jpg");
-
 }
 
 body {  /* The body tag of all pages */
@@ -26,7 +22,6 @@ body {  /* The body tag of all pages */
     width: 100px;
     height: 50px;
     font-size: larger;
-
 }
 
 
@@ -38,10 +33,12 @@ body {  /* The body tag of all pages */
     font-size: medium;
 }
 
+
 #challengeList {
     list-style: none;
 }
 
+/*Customization for the question button*/
 #challengeList li{
     margin: 30px 0px 30px 0px;
 }
@@ -75,11 +72,9 @@ body {  /* The body tag of all pages */
     text-decoration: none;
 }
 
+/*Name picker box customization*/
 #enterName {
-    display: var(--pop-up);
-    /*position: fixed;
-    right: 700px;
-    top: 300px;*/
+    display: block;
     background-color: white;
     height: 400px;
     width: 500px;
@@ -88,6 +83,7 @@ body {  /* The body tag of all pages */
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 40px;
 }
 
 #tutorial {
@@ -123,12 +119,19 @@ body {  /* The body tag of all pages */
     font-size: xx-large;
 }
 
-/* The Back button */
-#back, #reload {
-    margin-top: 25px;
+
+
+/* The Header buttons */
+#back, #reload, #QRcode {
+    margin-top: 40px;
     margin-right: 25px;
     float: right;
     color: antiquewhite;
+    font-size: 30px;
+}
+
+#QRcode {
+    margin-bottom: 10px;
     font-size: 30px;
 }
 
@@ -165,16 +168,37 @@ h3 {
     padding: 10px;
     text-align: center;
     width: 50px;
+    border-radius: 25px;
+}
+
+.submit {
+    border: 1px solid dimgrey;
+    background-color: black;
+    color: navajowhite;
+    padding: 10px;
+    text-align: center;
+    width: 50px;
+    border-radius: 25px;
+}
+
+#message {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-size: xx-large;
+}
+
+#qDisplay {
+    float: right;
 }
 
 /* For mobile phones */
 @media screen and (max-width: 600px) {
-    #back, #reload {
+    #back, #reload, #QRcode {
         margin-top: 40px;
         font-size: 15px;
     }
 
-    #question {
+    #question, #message {
         font-size: large;
     }
 }
@@ -192,10 +216,7 @@ h3 {
     margin-bottom: 15px;
 }
 
-#message {
-    margin-top: 50px;
-    margin-bottom: 20px;
-}
+
 
 .center {
     margin: auto;
@@ -238,13 +259,39 @@ td {
     /* padding: 5px; */
 }
 
+#cameraBox {
+    position: absolute;
+    background-color: white;
+    height: 300px;
+    width: 400px;
+    border: black 6px solid;
+    margin: 100px 10px;
+    text-align: center;
+
+
+}
+
 /* Leaderboard for small mobile phones */
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 420px) {
     table {
         font-size: medium;
     }
+
+    #cameraBox {
+        width: 10px;
+    }
+
+    #back, #reload, #QRcode {
+        font-size: 10px;
+    }
 }
 
-tr {
-
+@media screen and (max-width: 300px) {
+    #back, #reload, #QRcode {
+        font-size: 9px;
+        margin: 40px 8px 10px 0px;
+    }
 }
+
+
+

@@ -227,6 +227,6 @@ button:hover {
 /* when the width is 420px then the letters size is medium */
 @media screen and (max-width: 420px) {
     #Start {
-        font-size: medium;
+        font-size: small;
     }
 }

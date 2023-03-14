@@ -5,9 +5,12 @@ let errorList = document.getElementById("errorList");  // Display the errors tha
 let loader = document.getElementById("loader");  // The loading icon
 let cameraBox = document.getElementById("cameraBox");
 
+no = document.getElementById("noCamera");
+no.hidden = cameraBox !== null;
+no.hidden = !no.hidden;
+
 if (!(cameraBox === null)) {
-    no = document.getElementById("noCamera");
-    no.hidden = !no.hidden;
+
     cameraBox.hidden = true;
     cameraBox.style.width = (getWidth() - 60) + "px";
     cameraBox.style.height = (getHeight() - 300) + "px";
@@ -203,7 +206,7 @@ function skipQuestion() {
 
 // Gets the leaderboard information, displays it on screen
 function getLeaderboard() {
-    fetch(TH_BASE_URL + "leaderboard?session=" + getCookie("session") + "&sorted&limit=20")
+    fetch(TH_BASE_URL + "leaderboard?session=" + getCookie("session") + "&sorted&limit=40")
         .then(response => response.json())
         .then(jsonObject => {
             if (jsonObject.status === "OK") {

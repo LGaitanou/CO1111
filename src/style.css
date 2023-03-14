@@ -132,7 +132,7 @@ body {  /* The body tag of all pages */
 
 #QRcode {
     margin-bottom: 10px;
-    font-size: 15px;
+    font-size: 30px;
 }
 
 #back:link, #reload:link {
@@ -181,14 +181,20 @@ h3 {
     border-radius: 25px;
 }
 
+#message {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-size: xx-large;
+}
+
 /* For mobile phones */
 @media screen and (max-width: 600px) {
-    #back, #reload {
+    #back, #reload, #QRcode {
         margin-top: 40px;
         font-size: 15px;
     }
 
-    #question {
+    #question, #message {
         font-size: large;
     }
 }
@@ -206,10 +212,7 @@ h3 {
     margin-bottom: 15px;
 }
 
-#message {
-    margin-top: 50px;
-    margin-bottom: 20px;
-}
+
 
 .center {
     margin: auto;
@@ -276,6 +279,13 @@ td {
 
     #back, #reload, #QRcode {
         font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    #back, #reload, #QRcode {
+        font-size: 9px;
+        margin: 40px 8px 10px 0px;
     }
 }
 

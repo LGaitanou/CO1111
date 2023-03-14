@@ -364,7 +364,7 @@ var opts = {
     scanPeriod: 1
 };
 
-var scanner = new Instascan.Scanner(opts);
+if (!(camera === null)) var scanner = new Instascan.Scanner(opts);
 
 Instascan.Camera.getCameras().then(function (cameras) {
     if (cameras.length > 0) {

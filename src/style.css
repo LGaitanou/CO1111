@@ -209,14 +209,21 @@ h3 {
     float: left;
 }
 
-.questionsNum {
-    float: right;
-    width: 100px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+#score {
+    width: 10px;
 }
 
+.questionsNum {
+    float: right;
+    text-align: center;
+    /*width: 30px;
+    margin-top: 15px;
+    margin-bottom: 15px;*/
+}
 
+#numOfQuestions {
+    margin-right: 30px;
+}
 
 .center {
     margin: auto;
@@ -292,6 +299,4 @@ td {
         margin: 40px 8px 10px 0px;
     }
 }
-
-
 

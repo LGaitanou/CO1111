@@ -214,12 +214,14 @@ button:hover {
 
 #Contribution{
     background-color: darkgray;
+    border: 1px solid black;
     border-radius: 25px;
     padding: 20px;
 }
 
 #Names1{
     background-color: darkgray;
+    border: 1px solid black;
     border-radius: 25px;
     padding: 20px;
 }

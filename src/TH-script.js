@@ -9,14 +9,14 @@ no = document.getElementById("noCamera");
 
 
 if (!(cameraBox === null)) {
-
+    no.innerHTML = "Camera Available";
     cameraBox.hidden = true;
     cameraBox.style.width = (getWidth() - 60) + "px";
     cameraBox.style.height = (getHeight() - 300) + "px";
 }
 
 let camera = document.getElementById("preview");
-if (!(camera === null)) camera.hidden = true;
+if (!(camera === null)) camera.hidden = false;
 
 /*function isTest() {
     TH_BASE_URL = "https://codecyprus.org/th/test-api/";
@@ -418,6 +418,7 @@ function openCamera() {
 
     scanner.addListener('scan', function (content) {
         document.getElementById("hint").innerHTML = content;
+        document.getElementById("noCamera").innerHTML = "Hint Acquired";
     });
 
 }

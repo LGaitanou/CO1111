@@ -9,14 +9,15 @@ no = document.getElementById("noCamera");
 
 
 if (!(cameraBox === null)) {
-    no.innerHTML = "Camera Available";
     cameraBox.hidden = true;
     cameraBox.style.width = (getWidth() - 60) + "px";
     cameraBox.style.height = (getHeight() - 300) + "px";
 }
 
 let camera = document.getElementById("preview");
-if (!(camera === null)) camera.hidden = false;
+if (!(camera === null)) {
+    camera.hidden = false;
+}
 
 /*function isTest() {
     TH_BASE_URL = "https://codecyprus.org/th/test-api/";
@@ -407,6 +408,7 @@ function openCamera() {
 
     Instascan.Camera.getCameras().then(function (cameras) {
         if (cameras.length > 0) {
+            no.innerHTML = "Camera Available";
             scanner.start(cameras[0]);
         } else {
             console.error('No cameras found.');
@@ -414,6 +416,7 @@ function openCamera() {
         }
     }).catch(function (e) {
         console.error(e);
+
     });
 
     scanner.addListener('scan', function (content) {

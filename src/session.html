@@ -14,9 +14,9 @@
 
     <a href="app.html" id="back"><b>BACK</b></a>
     <a href="session.html" id="reload"><b>RELOAD</b></a>
-    <b id="QRcode" onclick="cameraBox.hidden=!cameraBox.hidden;">QR CODE</b>
+    <b id="QRcode" onclick="openCamera()">QR CODE</b>
 </header>
-
+<!-- cameraBox.hidden=!cameraBox.hidden; -->
 <!-- Score Display-->
 <div id="detailsDisplay">
     <!-- style="font-weight: bold;" -->
@@ -88,5 +88,6 @@
 <div id="hint" class="center"></div>
 
 <script src="TH-script.js"></script>
+<script src="instascan.min.js"></script>
 </body>
 </html>

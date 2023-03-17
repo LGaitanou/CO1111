@@ -1,14 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Index Page</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="indexStyle.css">
+    <title>Treasure Hunt Landing Page</title>
 </head>
+
 <body>
 
+<!--Header that explains what is the treasure hunt -->
+<header id="headerr">
+    <img id="logo" src="Team6Logo.jpg" alt="Treasure Hunt Team 6 Logo" width="99" height="99">
+    <h1 id="title">Treasure Hunt</h1>
+    <p>Project Treasure Hunt is a mobile game app that allows users to participate in a virtual treasure hunt. The app will present users with a series of questions, and the goal of the game is to answer each
+        question correctly in order to progress to the next one.</p>
+</header>
 
+<!--Messages for the index page-->
+<main id="main-content">
+    <h2 id="welcome-message">Welcome to the Treasure Hunt!</h2>
 
-<a href="app.html">Start the Hunt!!!</a>
+    <p id="description">Join us for an exciting adventure as we search for hidden treasures!</p><br><br>
+
+    <a id="Start" onclick="resumeHunt()">START THE HUNT</a>   <!--Button for the start of the treasure hunt-->
+</main>
+
+<!--In footer there is a button that takes you to the about page -->
+<footer id="footer">
+    <p id="copyright">Copyright &copy; Treasure Hunt 2023</p>
+    <a id="about-button" href="about.html">About</a>
+</footer>
+
+<script src="TH-script.js"></script>
 </body>
+
 </html>

@@ -88,8 +88,12 @@ function getQuestions() {
         .then(jsonObject => {
             if (jsonObject.status === "OK") {
                 setQuestionInterface(jsonObject.questionType);
-                setInterval(getLocation, 30100);  // Update the location every 30 seconds
-                if (jsonObject.requiresLocation) getLocation();
+                setInterval(getLocation, 30000);  // Update the location every 30 seconds
+                if (jsonObject.requiresLocation) {
+                    let m = document.getElementById("message");
+                    m.innerHTML = "These question requires geolocation";
+                    getLocation();
+                }
 
                 // Makes the skip button appear or disappear
                 if (jsonObject.canBeSkipped) document.getElementById("skipButton").style.display = "block";
@@ -205,7 +209,7 @@ function skipQuestion() {
 
 // Gets the leaderboard information, displays it on screen
 function getLeaderboard() {
-    fetch(TH_BASE_URL + "leaderboard?session=" + getCookie("session") + "&sorted&limit=40")
+    fetch(TH_BASE_URL + "leaderboard?session=" + getCookie("session") + "&sorted&limit=30")
         .then(response => response.json())
         .then(jsonObject => {
             if (jsonObject.status === "OK") {
@@ -234,6 +238,40 @@ function getLeaderboard() {
                 }
             }
         });
+}
+
+function resumeHunt() {
+    if (getCookie("session") !== "") {
+        let re = confirm("There is an ongoing session. Do you want to resume it?");
+        if (re) {
+            window.location.href = "session.html";
+            getQuestions();
+        }
+        else {
+            window.location.href = "name.html";
+
+        }
+    }
+    else {
+        window.location.href = "name.html";
+    }
+}
+
+function resumeHuntIndex() {
+    if (getCookie("session") !== "") {
+        let re = confirm("There is an ongoing session. Do you want to resume it?");
+        if (re) {
+            window.location.href = "src/session.html";
+            getQuestions();
+        }
+        else {
+            window.location.href = "src/name.html";
+
+        }
+    }
+    else {
+        window.location.href = "src/name.html";
+    }
 }
 
 // Alter the input procedure for every different kind of question
@@ -333,53 +371,56 @@ function updatePosition(position) {
 
 /////////////////////////////////////
 // Code to enable the QR code reader
+function openCamera() {
 
-var opts = {
-    // Whether to scan continuously for QR codes. If false, use scanner.scan() to
-    // manually scan. If true, the scanner emits the "scan" event when a QR code is
-    // scanned. Default true.
-    continuous: true,
-    // The HTML element to use for the camera's video preview. Must be a <video>
-    // element. When the camera is active, this element will have the "active" CSS
-    // class, otherwise, it will have the "inactive" class. By default, an invisible
-    // element will be created to host the video.
-    video: document.getElementById('preview'),
-    // Whether to horizontally mirror the video preview. This is helpful when trying to
-    // scan a QR code with a user-facing camera. Default true.
-    mirror: true,
-    // Whether to include the scanned image data as part of the scan result. See the
-    // "scan" event for image format details. Default false.
-    captureImage: false,
-    // Only applies to continuous mode. Whether to actively scan when the tab is not
-    // active.
-    // When false, this reduces CPU usage when the tab is not active. Default true.
-    backgroundScan: true,
-    // Only applies to continuous mode. The period, in milliseconds, before the same QR
-    // code will be recognized in succession. Default 5000 (5 seconds).
-    refractoryPeriod: 5000,
-    // Only applies to continuous mode. The period, in rendered frames, between scans. A
-    // lower scan period increases CPU usage but makes scan response faster.
-    // Default 1 (i.e. analyze every frame).
-    scanPeriod: 1
-};
+    cameraBox.hidden=!cameraBox.hidden;
 
-if (!(camera === null)) var scanner = new Instascan.Scanner(opts);
+    var opts = {
+        // Whether to scan continuously for QR codes. If false, use scanner.scan() to
+        // manually scan. If true, the scanner emits the "scan" event when a QR code is
+        // scanned. Default true.
+        continuous: true,
+        // The HTML element to use for the camera's video preview. Must be a <video>
+        // element. When the camera is active, this element will have the "active" CSS
+        // class, otherwise, it will have the "inactive" class. By default, an invisible
+        // element will be created to host the video.
+        video: document.getElementById('preview'),
+        // Whether to horizontally mirror the video preview. This is helpful when trying to
+        // scan a QR code with a user-facing camera. Default true.
+        mirror: true,
+        // Whether to include the scanned image data as part of the scan result. See the
+        // "scan" event for image format details. Default false.
+        captureImage: false,
+        // Only applies to continuous mode. Whether to actively scan when the tab is not
+        // active.
+        // When false, this reduces CPU usage when the tab is not active. Default true.
+        backgroundScan: true,
+        // Only applies to continuous mode. The period, in milliseconds, before the same QR
+        // code will be recognized in succession. Default 5000 (5 seconds).
+        refractoryPeriod: 5000,
+        // Only applies to continuous mode. The period, in rendered frames, between scans. A
+        // lower scan period increases CPU usage but makes scan response faster.
+        // Default 1 (i.e. analyze every frame).
+        scanPeriod: 1
+    };
+    var scanner = new Instascan.Scanner(opts);
 
-Instascan.Camera.getCameras().then(function (cameras) {
-    if (cameras.length > 0) {
-        scanner.start(cameras[0]);
-    } else {
-        console.error('No cameras found.');
-        alert("No cameras found.");
-    }
-}).catch(function (e) {
-    console.error(e);
-});
+    Instascan.Camera.getCameras().then(function (cameras) {
+        if (cameras.length > 0) {
+            scanner.start(cameras[0]);
+        } else {
+            console.error('No cameras found.');
+            alert("No cameras found.");
+        }
+    }).catch(function (e) {
+        console.error(e);
+    });
 
-scanner.addEventListener('scan', function (content) {
-    document.getElementById("hint").innerHTML = content;
-});
+    scanner.addListener('scan', function (content) {
+        document.getElementById("hint").innerHTML = content;
+    });
 
+}
 //////////////////////////////
 // Get the dimensions of the page
 

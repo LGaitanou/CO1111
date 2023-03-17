@@ -384,7 +384,7 @@ function openCamera() {
         // element. When the camera is active, this element will have the "active" CSS
         // class, otherwise, it will have the "inactive" class. By default, an invisible
         // element will be created to host the video.
-        video: document.getElementById('preview'),
+        video: document.getElementById("preview"),
         // Whether to horizontally mirror the video preview. This is helpful when trying to
         // scan a QR code with a user-facing camera. Default true.
         mirror: true,

@@ -4,6 +4,7 @@ let challengesList = document.getElementById("challengeList");  // List the avai
 let errorList = document.getElementById("errorList");  // Display the errors that the API gives in the "app" page
 let loader = document.getElementById("loader");  // The loading icon
 let cameraBox = document.getElementById("cameraBox");
+let needsLocation = false;
 
 no = document.getElementById("noCamera");
 
@@ -17,6 +18,8 @@ if (!(cameraBox === null)) {
 let camera = document.getElementById("preview");
 if (!(camera === null)) {
     camera.hidden = false;
+    camera.style.width = (getWidth() - 60) + "px";
+    camera.style.height = (getHeight() - 300) + "px";
 }
 
 /*function isTest() {
@@ -93,7 +96,7 @@ function getQuestions() {
                 if (jsonObject.requiresLocation) {
                     let m = document.getElementById("message");
                     m.innerHTML = "These question requires geolocation";
-                    getLocation();
+                    needsLocation = true;
                 }
 
                 // Makes the skip button appear or disappear
@@ -131,7 +134,7 @@ function getQuestions() {
 
 // Handles the answer to the current question
 function answerQuestion(answer) {
-    console.log(answer);
+    if (needsLocation) getLocation();
     fetch(TH_BASE_URL + "answer?session=" + getCookie("session") + "&answer=" + answer)
         .then(response => response.json())
         .then(jsonObject => {
@@ -139,7 +142,7 @@ function answerQuestion(answer) {
 
                 // If session is over
                 if (jsonObject.completed) {
-                    document.cookie = "session =; expires=Wed, 31 Oct 2012 08:50:17 UTC;";
+                    document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";  // Delete the session cookie
                     window.location.href = "leaderboard.html";
                 }
                 showScore();
@@ -215,7 +218,6 @@ function getLeaderboard() {
         .then(jsonObject => {
             if (jsonObject.status === "OK") {
                 loader.hidden = true;
-
                 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
                 let dateOptions = { second: "2-digit", minute: "2-digit",  hour: "2-digit", day: "numeric", month: "short"};  // Helps convert the epoch time into readable text
                 let lArray = jsonObject.leaderboard;
@@ -284,33 +286,13 @@ function setQuestionInterface(type) {
     let t = document.getElementById("text");
     if (type === "BOOLEAN") {
         b.style.display = "block";
-        i.style.display = "none";
-        n.style.display = "none";
-        m.style.display = "none";
-        t.style.display = "none";
     } else if (type === "INTEGER") {
-        b.style.display = "none";
         i.style.display = "block";
-        n.style.display = "none";
-        m.style.display = "none";
-        t.style.display = "none";
     } else if (type === "NUMERIC") {
-        b.style.display = "none";
-        i.style.display = "none";
         n.style.display = "block";
-        m.style.display = "none";
-        t.style.display = "none";
     } else if (type === "MCQ") {
-        b.style.display = "none";
-        i.style.display = "none";
-        n.style.display = "none";
         m.style.display = "block";
-        t.style.display = "none";
     } else if (type === "TEXT") {
-        b.style.display = "none";
-        i.style.display = "none";
-        n.style.display = "none";
-        m.style.display = "none";
         t.style.display = "block";
     }
 }

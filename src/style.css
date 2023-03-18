@@ -302,3 +302,7 @@ td {
     }
 }
 
+#boolean, #integer, #text, #numeric, #MCQ {
+    display: none;
+}
+

@@ -12,7 +12,7 @@ no = document.getElementById("noCamera");
 if (!(cameraBox === null)) {
     cameraBox.hidden = true;
     cameraBox.style.width = (getWidth() - 60) + "px";
-    cameraBox.style.height = (getHeight() - 300) + "px";
+    cameraBox.style.height = (getHeight() - 200) + "px";
 }
 
 let camera = document.getElementById("preview");

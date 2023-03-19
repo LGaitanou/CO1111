@@ -182,10 +182,11 @@ h3 {
 #skipButton {
     border: 1px solid dimgrey;
     background-color: black;
-    color: navajowhite;
+    color: turquoise;
     padding: 10px;
     text-align: center;
     border-radius: 25px;
+    margin-top: 100px;
 }
 
 .submit {
@@ -312,6 +313,10 @@ td {
     #back, #reload, #QRcode {
         font-size: 9px;
         margin: 40px 8px 10px 0px;
+    }
+
+    table {
+        font-size: smaller;
     }
 }
 

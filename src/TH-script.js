@@ -133,16 +133,13 @@ function getQuestions() {
 }
 
 // Handles the answer to the current question
-function answerQuestion(answer) {
-    if (needsLocation) getLocation();
+function answerQuestion(answer, needsLocation) {
     fetch(TH_BASE_URL + "answer?session=" + getCookie("session") + "&answer=" + answer)
         .then(response => response.json())
         .then(jsonObject => {
             if (jsonObject.status === "OK") {
-
                 // If session is over
                 if (jsonObject.completed) {
-                    document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";  // Delete the session cookie
                     window.location.href = "leaderboard.html";
                 }
                 showScore();
@@ -175,12 +172,6 @@ function showScore() {
             if (jsonObject.status === "OK") {
                 let scoreQ = document.getElementById("score");
                 scoreQ.innerHTML = jsonObject.score;
-
-                // If the session has run out of time, leave the session
-                /*if (jsonObject.finished) {
-                    alert("You have run out of time!");
-                    window.location.href = "name.html";
-                }*/
             }
             else {
                 for (let i = 0; i < jsonObject.errorMessages.length; i++) {
@@ -217,21 +208,25 @@ function getLeaderboard() {
         .then(response => response.json())
         .then(jsonObject => {
             if (jsonObject.status === "OK") {
+                document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                document.cookie = "name=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
                 loader.hidden = true;
                 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
                 let dateOptions = { second: "2-digit", minute: "2-digit",  hour: "2-digit", day: "numeric", month: "short"};  // Helps convert the epoch time into readable text
                 let lArray = jsonObject.leaderboard;
                 let tableHtml = "";
-
+                let rank = 1;
                 // Loop to create a row for every entry in the leaderboard
                 for (let i = 0; i < lArray.length; i++) {
                     let readableDate = new Date(lArray[i].completionTime);  // Convert the epoch time to readable time
                     let modifiedDate = readableDate.toLocaleDateString("en-UK", dateOptions);  // Modify the readable time to show it in the table
                     tableHtml += "<tr>\n" +
+                        "<td>" + rank + "</td>" +  // Insert the rank in the row
                         "<td>" + lArray[i].player + "</td>" +  // Insert the name in the row
                         "<td>" + lArray[i].score + "</td>" +  // Insert the score in the row
                         "<td>" + modifiedDate + "</td>" +  // Insert the date in the row
                         "</td>";
+                    rank++;
                 }
                 document.getElementById("leaderboardTable").innerHTML += tableHtml;  // Update the table with the changes
             }

@@ -1,0 +1,23 @@
+First Meeting:
+
+We talked about how we should start the assignment.
+We concluded that all the Members should finish the 15th worksheet and then create the main pages for the Hunt.
+
+Second Meeting:
+
+The worksheet was completed by all members. The templates for some of the pages were created.
+Nduka was tasked to desing the landing page of the Hunt. Theodoulos was tasked to setup the twitter page and start the about page of the Hunt.
+Loizos was tasked to start the page and the javascript code that shows the list of availble challenges.
+
+Third Meeting:
+
+A lot progress has been made since the last meeting on the TH. 
+Most of the javascript has been done by Loizos and and progress has been made on the social network site as well, by Theodoulos. 
+For the css on the landing and about page, Theodoulos and Nduka have made significant progress. Every one was tasked to finish their indivijual work. 
+Theodoulos and Nduka where also tasked to complete the testing for the site.
+
+Fourth Meeting:
+
+The project is is almost finished. Nduka was tasked to complete the unit testing and is still at that proccess.
+Theodoulos fixes some css. Loizos added some code to the javascript.
+Everyone was tasked to continue their individual work.

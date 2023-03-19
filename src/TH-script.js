@@ -91,13 +91,14 @@ function getQuestions() {
         .then(response => response.json())
         .then(jsonObject => {
             if (jsonObject.status === "OK") {
-                setQuestionInterface(jsonObject.questionType);
+
                 setInterval(getLocation, 30000);  // Update the location every 30 seconds
                 if (jsonObject.requiresLocation) {
                     let m = document.getElementById("message");
                     m.innerHTML = "These question requires geolocation";
-                    needsLocation = true;
+                    setQuestionInterfaceLocation(jsonObject.questionType);
                 }
+                else setQuestionInterface(jsonObject.questionType);
 
                 // Makes the skip button appear or disappear
                 if (jsonObject.canBeSkipped) document.getElementById("skipButton").style.display = "block";
@@ -134,10 +135,12 @@ function getQuestions() {
 
 // Handles the answer to the current question
 function answerQuestion(answer, needsLocation) {
+    if (needsLocation) getLocation();
     fetch(TH_BASE_URL + "answer?session=" + getCookie("session") + "&answer=" + answer)
         .then(response => response.json())
         .then(jsonObject => {
             if (jsonObject.status === "OK") {
+
                 // If session is over
                 if (jsonObject.completed) {
                     window.location.href = "leaderboard.html";
@@ -292,6 +295,44 @@ function setQuestionInterface(type) {
     }
 }
 
+
+function setQuestionInterfaceLocation(type) {
+    let b = document.getElementById("boolean");
+    let i = document.getElementById("integer");
+    let n = document.getElementById("numeric");
+    let m = document.getElementById("MCQ");
+    let t = document.getElementById("text");
+    if (type === "BOOLEAN") {
+        b.style.display = "block";
+        b.innerHTML = "<input class=\"boolAns submit\" name=\"bool\" type=\"button\" value=\"true\" onclick=\"answerQuestion(true, true)\">\n" +
+            "    <input class=\"boolAns submit\" name=\"bool\" type=\"button\" value=\"false\" onclick=\"answerQuestion(false, true)\">";
+    } else if (type === "INTEGER") {
+        i.style.display = "block";
+        i.innerHTML = "<form>\n" +
+            "        <input id=\"trueIntAns\" class=\"intAns\" type=\"number\" placeholder=\"...\">\n" +
+            "        <input class=\"submit\" type=\"button\" value=\"Submit\" onclick=\"answerQuestion(document.getElementById('trueIntAns').value)\">\n" +
+            "    </form>";
+    } else if (type === "NUMERIC") {
+        n.style.display = "block";
+        n.innerHTML = "<form>\n" +
+            "        <input id=\"trueNumAns\" class=\"numAns\" type=\"number\" placeholder=\"...\">\n" +
+            "        <input class=\"submit\" step=\"0.00001\" type=\"button\" value=\"Submit\" onclick=\"answerQuestion(document.getElementById('trueNumAns',).value, true)\">\n" +
+            "    </form>";
+    } else if (type === "MCQ") {
+        m.style.display = "block";
+        m.innerHTML = "<input class=\"abcdAns submit\" name=\"abcd\" type=\"button\" value=\"A\" onclick=\"answerQuestion('A', true)\">\n" +
+            "    <input class=\"abcdAns submit\" name=\"abcd\" type=\"button\" value=\"B\" onclick=\"answerQuestion('B', true)\">\n" +
+            "    <input class=\"abcdAns submit\" name=\"abcd\" type=\"button\" value=\"C\" onclick=\"answerQuestion('C', true)\">\n" +
+            "    <input class=\"abcdAns submit\" name=\"abcd\" type=\"button\" value=\"D\" onclick=\"answerQuestion('D', true)\">";
+    } else if (type === "TEXT") {
+        t.style.display = "block";
+        t.innerHTML = "<form>\n" +
+            "        <input id=\"trueTextAns\" class=\"textAns\" type=\"text\" placeholder=\"...\">\n" +
+            "        <input class=\"submit\" maxlength=\"50\" type=\"button\" value=\"Submit\" onclick=\"answerQuestion(document.getElementById('trueTextAns').value, true)\">\n" +
+            "    </form>";
+    }
+}
+
 /////////////////////////////////////////////////////
 // Functions to handle cookies taken from w3schools
 // https://www.w3schools.com/js/js_cookies.asp
@@ -318,18 +359,6 @@ function getCookie(cname) {
     return "";
 }
 
-function checkCookie() {
-    let user = getCookie("username");
-    if (user != "") {
-        alert("Welcome again " + user);
-    } else {
-        user = prompt("Please enter your name:", "");
-        if (user != "" && user != null) {
-            setCookie("username", user, 365);
-        }
-    }
-}
-
 //////////////////////////////////////
 // Functions to handle the position of the user in real time
 
@@ -343,7 +372,7 @@ function getLocation() {
 }
 
 function updatePosition(position) {
-    fetch(TH_BASE_URL + "location?session=" +  +"&latitude= + " + position.coords.latitude + "&longitude=" + position.coords.longitude)
+    fetch(TH_BASE_URL + "location?session=" + getCookie("session") + "&latitude=" + position.coords.latitude + "&longitude=" + position.coords.longitude)
 }
 
 

@@ -375,7 +375,6 @@ function updatePosition(position) {
     fetch(TH_BASE_URL + "location?session=" + getCookie("session") + "&latitude=" + position.coords.latitude + "&longitude=" + position.coords.longitude)
 }
 
-
 /////////////////////////////////////
 // Code to enable the QR code reader
 function openCamera() {

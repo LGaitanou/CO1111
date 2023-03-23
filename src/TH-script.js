@@ -294,8 +294,6 @@ function setQuestionInterface(type) {
         t.style.display = "block";
     }
 }
-
-
 function setQuestionInterfaceLocation(type) {
     let b = document.getElementById("boolean");
     let i = document.getElementById("integer");

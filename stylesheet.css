@@ -1,8 +1,7 @@
-* {
-    font-family: Times, "Times New Roman", Georgia, serif;
+*{
+   font-family: Cascadia Code;
 }
 
-/*Background placement*/
 body {
     margin: 0px;
     padding: 0px;
@@ -13,84 +12,38 @@ body {
     grid-template-rows: auto 1fr auto;
     background-image: url("download.jpg");
 
-}
 
-/*Black wood background for only the header*/
-#black-background{
-    height: 100px;
-    max-width: 100%;
-    background-image: url("src/images.jpg");
 }
-
-#headerr {
+#header {
     padding: 20px;
     text-align: center;
 }
-
-#footer {
-    padding: 20px;
-    text-align: center;
-}
-
-/* The Back button */
-#back, #reload {
-    margin-top: 25px;
-    margin-right: 25px;
-    float: right;
-    color: antiquewhite;
-    font-size: 30px;
-}
-
-#back:link, #reload:link {
-    text-decoration: none;
-}
-
-#back:visited, #reload:link {
-    text-decoration: none;
-}
-
-#back:hover, #reload:link {
-    text-decoration: none;
-}
-
-#back:active, #reload:link {
-    text-decoration: none;
-}
-
-
-
 #title {
     font-size: 50px;
     font-weight: bold;
 }
-
 #main-content {
     background-size: cover;
     background-position: center;
     padding: 40px;
     text-align: center;
 }
-
 #welcome-message, #description {
     color: black;
     font-weight: bold;
 }
 
-
-/*About button customization*/
 #about-button{
-    background-color: darkgray;
+    background-color: transparent;
     color: black;
     background-size: 100px;
     position: center;
+    border: 3px black;
+    height: 250px;
+    width: 600px;
     padding: 10px;
-    border: 2px solid black;
-    border-radius: 40px;
-    width: 100px;
-    height: 70px;
-    font-size: large;
+    font-size: medium;
 }
-
 
 #about-button:link {
     text-decoration: none;
@@ -108,7 +61,7 @@ body {
     text-decoration: none;
 }
 
-/*Start button customization*/
+
 #Start {
     background-color: darkgray;
     margin-left: 0px;
@@ -140,95 +93,40 @@ body {
     text-decoration: none;
 }
 
-
-
+#footer {
+    padding: 20px;
+    text-align: center;
+}
 
 #copyright {
     color: steelblue;
 }
 
+/*
+The following are for the about page
+ */
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #F5F5F5;
-    margin: 0;
-    padding: 0;
+#Names{
+    color: grey;
 }
 
-
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 40px;
-    background-color: #FFF;
-    box-shadow: 0px 0px 20px #888888;
-    border-radius: 10px;
-    text-align: center;
+.Names{
+    color: grey;
 }
 
-
-h1 {
-    font-size: 36px;
-    color: #333;
-    margin-top: 0;
-    margin-bottom: 20px;
+footer{
+    height: 200px;
+    position: sticky;
+    top: auto;
+    margin-top: 50px;
+    padding-top: 100px;
 }
 
-input[type=text] {
-    padding: 10px;
-    font-size: 16px;
-    border: 2px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    width: 100%;
-    box-sizing: border-box;
+.Logo{
+    position: absolute;
+    right: 0px;
+    bottom: 10px;
+    left: 1400px;
 }
 
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    font-size: 16px;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-
-button:hover {
-    background-color: #3e8e41;
-}
-
-#greeting {
-    font-size: 24px;
-    color: #333;
-    margin-top: 20px;
-    margin-bottom: 0;
-    display: none;
-}
-
-
-#Contribution{
-    background-color: darkgray;
-    border: 1px solid black;
-    border-radius: 25px;
-    padding: 20px;
-}
-
-#Names1{
-    background-color: darkgray;
-    border: 1px solid black;
-    border-radius: 25px;
-    padding: 20px;
-}
-
-/* when the width is 420px then the letters size is medium */
-@media screen and (max-width: 420px) {
-    #Start {
-        font-size: small;
-    }
-}
+functiom Start

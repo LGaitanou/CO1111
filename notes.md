@@ -22,18 +22,29 @@ Loizos was tasked to start the page and the javascript code that shows the list 
 
 Third Meeting:
 
+The assignment is going for the most part smoothly. The index and about page have not been stylled very much but the javascript is progressing.
+The members whose job is the html pages and the css where advised to start doing some work.
+
+Fourth Meeting:
+
 A lot progress has been made since the last meeting on the TH. 
 Most of the javascript has been done by Loizos and progress has been made on the social network site as well, by Theodoulos. 
 For the css on the landing and about page, Theodoulos and Nduka have made significant progress. Every one was tasked to finish their indivijual work. 
 Theodoulos and Nduka where also tasked to complete the testing for the site.
 
-Fourth Meeting:
+Fifth Meeting:
 
 The project is almost finished. Nduka was tasked to complete the unit testing and is still at that proccess.
 Theodoulos fixes some css. Loizos added some code to the javascript.
 Everyone was tasked to continue their individual work.
 
-Fifth Meeting:
+Sixth Meeting:
+
+The Javascript is done with the adition of the QR code scanner.
+The User Acceptance test plan and the usability assessment of the final app where completed by Theodoulos Kappellos.
+Nduka is having trouble with the the unit testing 
+
+Seventh Meeting:
 
 Two days remain before the deadline of the assignment. Up until this point, the contribution to the assignment be each team member is as follows:
 

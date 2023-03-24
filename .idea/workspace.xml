@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bedb1cf7-0878-417b-8f55-e2ef26688b81" name="Changes" comment="Final Modifications to the Testing page">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/leaderboard.html" afterDir="false" />
-    </list>
+    <list default="true" id="bedb1cf7-0878-417b-8f55-e2ef26688b81" name="Changes" comment="Final Modifications to the Testing page" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,7 +66,7 @@
       <workItem from="1679647409076" duration="4635000" />
       <workItem from="1679654797760" duration="4666000" />
       <workItem from="1679660155135" duration="8769000" />
-      <workItem from="1679685822529" duration="2783000" />
+      <workItem from="1679685822529" duration="3148000" />
     </task>
     <task id="LOCAL-00001" summary="CheckQuestions Testing">
       <created>1679647683601</created>
@@ -169,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679687678274</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Final Modifications to the Testing page">
+      <created>1679688755156</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1679688755156</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

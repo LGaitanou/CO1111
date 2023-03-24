@@ -9,7 +9,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_20_2023_11_18_PM__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_23_2023_3_28_PM_[Changes]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_23_2023_3_28_PM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Treasure Hunt Meeting.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +31,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2NIMLod3jwVMH2vhdBv2ekfyCZm" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -40,7 +45,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/LoizosGaitanou/OneDrive - UCLan/Documents/The Computing Challenge/CO1111",
+    "last_opened_file_path": "C:/Users/LGaitanou/OneDrive - UCLan/Documents/The Computing Challenge/CO1111",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -48,6 +53,14 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\LGaitanou\OneDrive - UCLan\Documents\The Computing Challenge\CO1111" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\LoizosGaitanou\OneDrive - UCLan\Documents\The Computing Challenge\CO1111\src" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -58,7 +71,9 @@
       <updated>1679347090865</updated>
       <workItem from="1679347092549" duration="1410000" />
       <workItem from="1679559652256" duration="9182000" />
-      <workItem from="1679647409076" duration="306000" />
+      <workItem from="1679647409076" duration="4635000" />
+      <workItem from="1679654797760" duration="4666000" />
+      <workItem from="1679660155135" duration="733000" />
     </task>
     <task id="LOCAL-00001" summary="CheckQuestions Testing">
       <created>1679647683601</created>
@@ -67,7 +82,42 @@
       <option name="project" value="LOCAL" />
       <updated>1679647683601</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="CheckQuestions Testing">
+      <created>1679647730464</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1679647730464</updated>
+    </task>
+    <task id="LOCAL-00003" summary="CheckQuestions Testing">
+      <created>1679648767576</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1679648767576</updated>
+    </task>
+    <task id="LOCAL-00004" summary="CheckQuestions Testing">
+      <created>1679659253532</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1679659253532</updated>
+    </task>
+    <task id="LOCAL-00005" summary="CheckQuestions Testing">
+      <created>1679659455306</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1679659455306</updated>
+    </task>
+    <task id="LOCAL-00006" summary="CheckQuestions Testing">
+      <created>1679660518263</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1679660518263</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

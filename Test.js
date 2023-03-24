@@ -253,9 +253,6 @@ function getTestLeaderboard() {
                 else {
                     document.getElementById("LeaderboardNumOfPeople").innerText = "Number of people: " + jsonObject.numOfPlayers + "  =>  FAILED";
                 }
-
-
-
                 }
 
             else {

@@ -1,108 +1,59 @@
-// Define the API endpoints as JSON objects
-const apiEndpoints = {
-    "listQuestions": "/th/test-api/list",
-    "startQuiz": "/th/test-api/start",
-    "getQuestion": "/th/test-api/question",
-    "submitAnswer": "/th/test-api/answer",
-    "getScore": "/th/test-api/score",
-    "getLeaderboard": "/th/test-api/leaderboard"
-};
+const TH_TEST_URL = "https://codecyprus.org/th/test-api/"; // the test API base url
 
-function testStartQuiz() {
-    // Fetch the start quiz endpoint
-    fetch(apiEndpoints.startQuiz)
-        .then(response => {
-            if (response.ok) {
-                document.getElementById("result-startQuiz").innerHTML = "Success! Start quiz function is working.";
+function getTestChallenges() {
+    fetch(TH_TEST_URL + "list?number-of-ths=5")  // Get the response from the server
+        .then(response => response.json()) // Parse JSON text to JavaScript object
+        .then(jsonObject => {
+            let result = document.getElementById("testResult");
+            if (jsonObject.status === "OK") {  // If we successfully got the response we wanted
+                let THArray = jsonObject.treasureHunts;  // Get the array of available THs
+                if (THArray) {
+                    document.getElementById("badChallenges").innerHTML = "Output Got: " + THArray.length + " challenges. SUCCESS";
+                    let goodList = document.getElementById("testResult");
+                    goodList.innerText = "";
+                    for (let i = 0; i < THArray.length; i++) {
+                        let listItem = document.createElement("li");
+                        let uuid = THArray[i].uuid;
+                        listItem.innerHTML = "<p>" + THArray[i].name + "</p>";
+                        goodList.appendChild(listItem);
+                    }
+
+                }
+                else {
+                    document.getElementById("badChallenges").innerHTML = "Output Got: FAILED";
+                }
+            }
+            // If the response failed, display the errors in the page
+            else {
+                let erorList = document.getElementById("erorList");
+                for (let i = 0; i< jsonObject.errorMessages.length; i++) {
+                    let listItem = document.createElement("li");
+                    listItem.innerHTML = jsonObject.errorMessages[i];
+                    erorList.appendChild(listItem);
+                }
+            }
+        });
+}
+
+function getTestStart() {
+    fetch(TH_TEST_URL + "start?player=inactive")  // Get the response from the server
+        .then(response => response.json()) // Parse JSON text to JavaScript object
+        .then(jsonObject => {
+            let result = document.getElementById("badStart");
+            if (jsonObject.status === "OK") {  // If we successfully got the response we wanted
+                result.innerHTML = "Failed to get the error";
             }
             else {
-                document.getElementById("result-startQuiz").innerHTML = "Error: Start quiz function is not working.";
+                result.innerHTML = "Success. Error got.";
+                let erorList = document.getElementById("erorListStart");
+                for (let i = 0; i< jsonObject.errorMessages.length; i++) {
+                    let listItem = document.createElement("li");
+                    listItem.innerHTML = jsonObject.errorMessages[i];
+                    erorList.innerHTML = "";
+                    erorList.appendChild(listItem);
+                }
+
             }
-        })
-        .catch(error => {
-            document.getElementById("result-startQuiz").innerHTML = "Error: " + error.message;
         });
 }
 
-function testGetQuestion() {
-    // Fetch the get question endpoint with a sample question ID
-    fetch(apiEndpoints.getQuestion + "?question_id=123")
-        .then(response => {
-            if (response.ok) {
-                document.getElementById("result-getQuestion").innerHTML = "Success! Get question function is working.";
-            }
-            else {
-                document.getElementById("result-getQuestion").innerHTML = "Error: Get question function is not working.";
-            }
-        })
-        .catch(error => {
-            document.getElementById("result-getQuestion").innerHTML = "Error: " + error.message;
-        });
-}
-
-function testSubmitAnswer() {
-    // Fetch the submit answer endpoint with a sample question ID and answer
-    fetch(apiEndpoints.submitAnswer + "?question_id=123&answer=answer")
-        .then(response => {
-            if (response.ok) {
-                document.getElementById("result-submitAnswer").innerHTML = "Success! Submit answer function is working.";
-            }
-            else {
-                document.getElementById("result-submitAnswer").innerHTML = "Error: Submit answer function is not working.";
-            }
-        })
-        .catch(error => {
-            document.getElementById("result-submitAnswer").innerHTML = "Error: " + error.message;
-        });
-}
-
-function testGetScore() {
-    // Fetch the get score endpoint
-    fetch(apiEndpoints.getScore)
-        .then(response => {
-            if (response.ok) {
-                document.getElementById("result-getScore").innerHTML = "Success! Get score function is working.";
-            }
-            else {
-                document.getElementById("result-getScore").innerHTML = "Error: Get score function is not working.";
-            }
-        })
-        .catch(error => {
-            document.getElementById("result-getScore").innerHTML = "Error: " + error.message;
-        });
-}
-
-function testGetLeaderboard() {
-    // Fetch the get leaderboard endpoint
-    fetch(apiEndpoints.getLeaderboard)
-        .then(response => {
-            if (response.ok) {
-                document.getElementById("result-getLeaderboard").innerHTML = "Success! Get leaderboard function is working.";
-            }
-            else {
-                document.getElementById("result-getLeaderboard").innerHTML = "Error: Get leaderboard function is not working.";
-            }
-        })
-        .catch(error => {
-            document.getElementById("result-getLeaderboard").innerHTML = "Error: " + error.message;
-        });
-}
-
-
-function testStartQuiz() {
-    // Fetch the start quiz endpoint
-    fetch(apiEndpoints.startQuiz)
-        .then(response => {
-            if (response.ok) {
-                document.getElementById("result-startQuiz").innerHTML = "ERROR! Start quiz function is not working.";
-                document.getElementById("result-startQuiz").classList.add("error"); // add the error class to the result element
-            } else {
-                document.getElementById("result-startQuiz").innerHTML = "Welcome to the treasure Hunt: Start quiz function is working.";
-                document.getElementById("result-startQuiz").classList.add("success"); // add the success class to the result element
-            }
-        })
-        .catch(error => {
-            document.getElementById("result-startQuiz").innerHTML = "Error: " + error.message;
-            document.getElementById("result-startQuiz").classList.add("error"); // add the error class to the result element
-        });
-}

@@ -1,13 +1,10 @@
 const TH_BASE_URL = "https://codecyprus.org/th/api/"; // the true API base url
-const TH_TEST_URL = "https://codecyprus.org/th/test-api/"; // the test API base url
 let challengesList = document.getElementById("challengeList");  // List the available THs in here
 let errorList = document.getElementById("errorList");  // Display the errors that the API gives in the "app" page
 let loader = document.getElementById("loader");  // The loading icon
 let cameraBox = document.getElementById("cameraBox");
-let needsLocation = false;
 
 no = document.getElementById("noCamera");
-
 
 if (!(cameraBox === null)) {
     cameraBox.hidden = true;

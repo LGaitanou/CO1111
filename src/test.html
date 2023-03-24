@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <img src="Team6Logo.jpg" alt="Treasure Hunt Team 6 Logo" width="100" height="100">
+    <a href="index.html" id="back"><b>BACK</b></a>
+    <a href="test.html" id="reload"><b>RELOAD</b></a>
+</header>
+<h1>Testing Page for The Team Six Treasure Hunt</h1>
+
+<h3>Get Challenges Testing</h3>
+<form>
+    <input class="submit" type="button" value="Test" onclick="getTestChallenges()">
+</form>
+<p id="goodChallenges">EXPECTED OUTPUT: 5 Challenges</p>
+<p id="badChallenges"></p>
+<ul id="testResult"></ul>
+<ul id="erorList"></ul>
+
+<h3>Start Challenge Testing</h3>
+<form>
+    <input class="submit" type="button" value="Test" onclick="getTestStart()">
+</form>
+<p id="goodStart">EXPECTED OUTPUT: The TH is inactive</p>
+<p id="badStart"></p>
+<ul id="erorListStart"></ul>
+
+
+<script src="../Test.js"></script>
+</body>
+</html>

@@ -44,3 +44,15 @@ Theodoulos Kappellos: Created the about.html page, contributed to the index.html
 Chinecherem Batholomew Nduka: Did CSS for the index.html page. Has not completed the Unit Testing.
 
 Nduka was tasked to complete the Unit Testing.
+
+Final Meeting:
+
+Nduka failed to complete the Unit Testing for the assignment, so Loizos had to do it.
+
+Final contributions to the assignment by each member are as follows:
+
+Loizos Gaitanou: Has writen all of the JavaScript code, created the name.html, the app.thml, the session.html and the leaderboard.html pages. Also did CSS for the pages. Did the Unit testing.
+
+Theodoulos Kappellos: Created the about.html page, contributed to the index.html page and also did CSS for the pages. Created the twitter page and handled the marketing for the assignment. Has completed the User Acceptance test plan and the usability assessment of the final app.
+
+Chinecherem Batholomew Nduka: Did CSS for the index.html page.

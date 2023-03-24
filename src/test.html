@@ -5,14 +5,15 @@
     <title>Test Page</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body id="testBody">
 <header>
     <img src="Team6Logo.jpg" alt="Treasure Hunt Team 6 Logo" width="100" height="100">
     <a href="index.html" id="back"><b>BACK</b></a>
     <a href="test.html" id="reload"><b>RELOAD</b></a>
 </header>
-<h1>Testing Page for The Team Six Treasure Hunt</h1>
+<h1 class="center">Testing Page for The Team Six Treasure Hunt</h1>
 
+<div class="center">
 <h3>Get Challenges Testing</h3>
 <form>
     <input class="submit" type="button" value="Test" onclick="getTestChallenges()">
@@ -21,7 +22,10 @@
 <p id="badChallenges"></p>
 <ul id="testResult"></ul>
 <ul id="erorList"></ul>
+</div>
 
+
+<div class="center">
 <h3>Start Challenge Testing</h3>
 <form>
     <input class="submit" type="button" value="Test" onclick="getTestStart()">
@@ -29,7 +33,53 @@
 <p id="goodStart">EXPECTED OUTPUT: The TH is inactive</p>
 <p id="badStart"></p>
 <ul id="erorListStart"></ul>
+</div>
 
+<div class="center">
+    <h3>Start Get Question Testing</h3>
+    <form>
+        <input class="submit" type="button" value="Test" onclick="getTestQuestion()">
+    </form>
+    <p id="goodQuestion">EXPECTED OUTPUT: TH is completed, question type is number, it cannot be skipped and does not require location</p>
+    <p id="badQuestion"></p>
+    <ul id="testResultQuestion"></ul>
+    <ul id="erorListQuestion"></ul>
+</div>
+
+<div class="center">
+    <h3>Start Get Question Testing</h3>
+    <form>
+        <input class="submit" type="button" value="Test" onclick="getTestAnswer()">
+    </form>
+    <p id="goodAnswer">EXPECTED OUTPUT: Answer is correct and the TH is not completed</p>
+    <p id="badAnswer"></p>
+    <ul id="testResultAnswer"></ul>
+    <ul id="erorListAnswer"></ul>
+</div>
+
+<div class="center">
+    <h3>Start Get Score Testing</h3>
+    <form>
+        <input class="submit" type="button" value="Test" onclick="getTestScore()">
+    </form>
+    <p id="goodScore">EXPECTED OUTPUT: Answer is correct and the TH is not completed</p>
+    <p id="badScore"></p>
+    <ul id="testResultScore"></ul>
+    <ul id="erorListScore"></ul>
+</div>
+
+<div class="center">
+    <h3>Start Get Leaderboard Testing</h3>
+    <form>
+        <input class="submit" type="button" value="Test" onclick="getTestLeaderboard()">
+    </form>
+    <p id="goodLeaderboard">EXPECTED OUTPUT: It is not sorted, has a prize and will output 35 people</p>
+    <p id="LeaderboardSorted"></p>
+    <p id="LeaderboardHasPrize"></p>
+    <p id="LeaderboardNumOfPeople"></p>
+    <ul id="testResultLeaderboard"></ul>
+    <ul id="erorListLeaderboard"></ul>
+</div>
 
 <script src="../Test.js"></script>
 </body>

@@ -13,7 +13,6 @@ function getTestChallenges() {
                     goodList.innerText = "";
                     for (let i = 0; i < THArray.length; i++) {
                         let listItem = document.createElement("li");
-                        let uuid = THArray[i].uuid;
                         listItem.innerHTML = "<p>" + THArray[i].name + "</p>";
                         goodList.appendChild(listItem);
                     }
@@ -58,20 +57,25 @@ function getTestStart() {
 }
 
 function getTestQuestion() {
+    let goodList = document.getElementById("testResultQuestion");
+    goodList.innerHTML = " ";
     fetch(TH_TEST_URL + "question?completed&question-type=NUMERIC&can-be-skipped=false&requires-location=false")  // Get the response from the server
         .then(response => response.json()) // Parse JSON text to JavaScript object
         .then(jsonObject => {
             if (jsonObject.status === "OK") {  // If we successfully got the response we wanted
-                let goodList = document.getElementById("testResultQuestion");
+
+
 
                 if (jsonObject.completed) {
                     let listItem = document.createElement("li");
                     listItem.innerHTML = "Completed: " + jsonObject.completed + "  =>  SUCCESS";
+
                     goodList.appendChild(listItem);
                 }
                 else {
                     let listItem = document.createElement("li");
                     listItem.innerHTML = "Completed: " + jsonObject.completed + "  =>  FAILED";
+
                     goodList.appendChild(listItem);
                 }
 
@@ -107,6 +111,7 @@ function getTestQuestion() {
                     listItem.innerHTML = "Requires Location: " + jsonObject.requiresLocation + "  =>  FAILED";
                     goodList.appendChild(listItem);
                 }
+
             }
             else {
                 let erorList = document.getElementById("erorListQuestion");
@@ -116,16 +121,19 @@ function getTestQuestion() {
                     erorList.appendChild(listItem);
                 }
             }
+
         });
 }
 
 function getTestAnswer() {
+    let goodList = document.getElementById("testResultAnswer");
+    goodList.innerHTML = " ";
     fetch(TH_TEST_URL + "answer?correct&completed=false")  // Get the response from the server
         .then(response => response.json()) // Parse JSON text to JavaScript object
         .then(jsonObject => {
             if (jsonObject.status === "OK") {  // If we successfully got the response we wanted
 
-                let goodList = document.getElementById("testResultAnswer");
+
 
                 if (jsonObject.correct) {
                     let listItem = document.createElement("li");
@@ -162,12 +170,12 @@ function getTestAnswer() {
 }
 
 function getTestScore() {
+    let goodList = document.getElementById("testResultScore");
+    goodList.innerHTML = " ";
     fetch(TH_TEST_URL + "score?score=68")  // Get the response from the server
         .then(response => response.json()) // Parse JSON text to JavaScript object
         .then(jsonObject => {
             if (jsonObject.status === "OK") {  // If we successfully got the response we wanted
-
-                let goodList = document.getElementById("testResultScore");
 
                 if (jsonObject.score == 68) {
                     let listItem = document.createElement("li");
@@ -215,12 +223,12 @@ function getTestScore() {
 }
 
 function getTestLeaderboard() {
+    let goodList = document.getElementById("LeaderboardTestTable");
+    goodList.innerHTML = " ";
     fetch(TH_TEST_URL + "leaderboard?sorted=false&hasPrize&size=35")  // Get the response from the server
         .then(response => response.json()) // Parse JSON text to JavaScript object
         .then(jsonObject => {
             if (jsonObject.status === "OK") {  // If we successfully got the response we wanted
-
-                let goodList = document.getElementById("testResultLeaderboard");
 
                 if (!jsonObject.sorted) {
                     document.getElementById("LeaderboardSorted").innerText = "Sorted: " + jsonObject.sorted + "  =>  SUCCESS";
@@ -238,22 +246,28 @@ function getTestLeaderboard() {
 
                 if (jsonObject.numOfPlayers == 35) {
                     document.getElementById("LeaderboardNumOfPeople").innerText = "Number of people: " + jsonObject.numOfPlayers + "  =>  SUCCESS";
-                    for (let i = 0; i < jsonObject.leaderboard.length; i++) {
-                        let listItem = document.createElement("li");
-                        listItem.innerHTML = jsonObject.leaderboard[i].player;
-                        goodList.appendChild(listItem);
-                        listItem.innerHTML = jsonObject.leaderboard[i].score;
-                        goodList.appendChild(listItem);
-                        listItem.innerHTML = jsonObject.leaderboard[i].completionTime;
-                        goodList.appendChild(listItem);
-                        listItem.innerHTML = "";
-                        goodList.appendChild(listItem);
+                    let dateOptions = { second: "2-digit", minute: "2-digit",  hour: "2-digit", day: "numeric", month: "short"};  // Helps convert the epoch time into readable text
+                    let lArray = jsonObject.leaderboard;
+                    let tableHtml = "";
+                    let rank = 1;
+                    // Loop to create a row for every entry in the leaderboard
+                    for (let i = 0; i < lArray.length; i++) {
+                        let readableDate = new Date(lArray[i].completionTime);  // Convert the epoch time to readable time
+                        let modifiedDate = readableDate.toLocaleDateString("en-UK", dateOptions);  // Modify the readable time to show it in the table
+                        tableHtml += "<tr>\n" +
+                            "<td>" + rank + "</td>" +  // Insert the rank in the row
+                            "<td>" + lArray[i].player + "</td>" +  // Insert the name in the row
+                            "<td>" + lArray[i].score + "</td>" +  // Insert the score in the row
+                            "<td>" + modifiedDate + "</td>" +  // Insert the date in the row
+                            "</td>";
+                        rank++;
                     }
+                    document.getElementById("LeaderboardTestTable").innerHTML += tableHtml;  // Update the table with the changes
                 }
                 else {
                     document.getElementById("LeaderboardNumOfPeople").innerText = "Number of people: " + jsonObject.numOfPlayers + "  =>  FAILED";
                 }
-                }
+            }
 
             else {
                 let erorList = document.getElementById("erorListLeaderboard");

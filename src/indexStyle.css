@@ -108,6 +108,36 @@ body {
     text-decoration: none;
 }
 
+#Testing\ Page{
+    background-color: darkgray;
+    color: black;
+    background-size: 100px;
+    position: center;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 40px;
+    width: 100px;
+    height: 70px;
+    font-size: large;
+}
+
+
+#Testing\ Page {
+    text-decoration: none;
+}
+
+#Testing\ Page {
+    text-decoration: none;
+}
+
+#Testing\ Page {
+    text-decoration: none;
+}
+
+#Testing\ Page {
+    text-decoration: none;
+}
+
 /*Start button customization*/
 #Start {
     background-color: darkgray;
@@ -230,3 +260,4 @@ button:hover {
         font-size: small;
     }
 }
+

@@ -1,37 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <title>API Endpoint Tests</title>
+
         <link rel="stylesheet" type="text/css" href="stylesheet.css">
-        <title>Treasure Hunt Landing Page</title>
 </head>
-
 <body>
+<h1>API Endpoint Tests</h1>
+<p>Click on the buttons below to test each API endpoint:</p>
+<button onclick="testStartQuiz()">Test Start Quiz</button>
+<div id="result-startQuiz"></div>
+<button onclick="testGetQuestion()">Test Get Question</button>
+<div id="result-getQuestion"></div>
+<button onclick="testSubmitAnswer()">Test Submit Answer</button>
+<div id="result-submitAnswer"></div>
+<button onclick="testGetScore()">Test Get Score</button>
+<div id="result-getScore"></div>
+<button onclick="testGetLeaderboard()">Test Get Leaderboard</button>
+<div id="result-getLeaderboard"></div>
+<script>
+        // Define the API endpoints as JSON objects
+        const apiEndpoints = {
+                "listQuestions": "/th/test-api/list",
+                "startQuiz": "/th/test-api/start",
+                "getQuestion": "/th/test-api/question",
+                "submitAnswer": "/th/test-api/answer",
+                "getScore": "/th/test-api/score",
+                "getLeaderboard": "/th/test-api/leaderboard"
+        };
+        function testStartQuiz() {
+                // Fetch the start quiz endpoint
+                fetch(apiEndpoints.startQuiz)
+                        .then(response => {
+                                if (response.ok) {
+                                        document.getElementById("result-startQuiz").innerHTML = "ERROR! Start quiz function is not working.";
+                                        document.getElementById("result-startQuiz").classList.add("error"); // add the error class to the result element
+                                } else {
+                                        document.getElementById("result-startQuiz").innerHTML = "Welcome to the treasure Hunt: Start quiz function is working.";
+                                        document.getElementById("result-startQuiz").classList.add("success"); // add the success class to the result element
+                                }
+                        })
+                        .catch(error => {
+                                document.getElementById("result-startQuiz").innerHTML = "Error: " + error.message;
+                                document.getElementById("result-startQuiz").classList.add("error"); // add the error class to the result element
+                        });
+        }
 
-<!--Header that explains what is the treasure hunt -->
-<header id="headerr">
-        <img id="logo" src="08_02_2023%2021_04_38.jpg" alt="Treasure Hunt Team 6 Logo" width="99" height="99">
-        <h1 id="title">Treasure Hunt</h1>
-        <p>Project Treasure Hunt is a mobile game app that allows users to participate in a virtual treasure hunt. The app will present users with a series of questions, and the goal of the game is to answer each
-                question correctly in order to progress to the next one.</p>
-</header>
+        function testGetQuestion() {
+                // Fetch the get question endpoint with a sample question ID
+                // Fetch the start quiz endpoint
+                fetch(apiEndpoints.testGetQuestion)
+                        .then(response => {
+                                if (response.ok) {
+                                        document.getElementById("result-testGetQuestion").innerHTML = "ERROR! Start quiz function is not working.";
+                                        document.getElementById("result-testGetQuestion").classList.add("error"); // add the error class to the result element
+                                } else {
+                                        document.getElementById("result-testGetQuestion").innerHTML = "Welcome to the treasure Hunt: Start quiz function is working.";
+                                        document.getElementById("result-testGetQuestion").classList.add("success"); // add the success class to the result element
+                                }
+                        })
+                        .catch(error => {
+                                document.getElementById("result-testGetQuestion").innerHTML = "Error: " + error.message;
+                                document.getElementById("result-testGetQuestion").classList.add("error"); // add the error class to the result element
+                        });
+        }
 
-<!--Messages for the index page-->
-<main id="main-content">
-        <h2 id="welcome-message">Welcome to the Treasure Hunt!</h2>
+        function testSubmitAnswer() {
+                // Fetch the submit answer endpoint with a sample question ID and answer
+                fetch(apiEndpoints.submitAnswer + "?question_id=123&answer=answer")
+                        .then(response => {
+                                if (response.ok) {
+                                        document.getElementById("result-submitAnswer").innerHTML = "ERROR! Submit answer function is not working.";
+                                }
+                                else {
+                                        document.getElementById("result-submitAnswer").innerHTML = "SUCCESS: Submit answer function is working.";
+                                }
+                        })
+                        .catch(error => {
+                                document.getElementById("result-submitAnswer").innerHTML = "Error: " + error.message;
+                        });
+        }
 
-        <p id="description">Join us for an exciting adventure as we search for hidden treasures!</p><br><br>
+        function testGetScore() {
+                // Fetch the get score endpoint
+                fetch(apiEndpoints.getScore)
+                        .then(response => {
+                                if (response.ok) {
+                                        document.getElementById("result-getScore").innerHTML = "ERROR! Get score function is not working.";
+                                }
+                                else {
+                                        document.getElementById("result-getScore").innerHTML = "SUCCESS: Get score function is working.";
+                                }
+                        })
+                        .catch(error => {
+                                document.getElementById("result-getScore").innerHTML = "Error: " + error.message;
+                        });
+        }
 
-<a id="Start" onclick="resumeHuntIndex()">START THE HUNT</a>   <!--Button for the start of the treasure hunt-->
-</main>
+        function testGetLeaderboard() {
+                // Fetch the get leaderboard endpoint
+                fetch(apiEndpoints.getLeaderboard)
+                        .then(response => {
+                                if (response.ok) {
+                                        document.getElementById("result-getLeaderboard").innerHTML = "ERROR! Get leaderboard function is not working.";
+                                }
+                                else {
+                                        document.getElementById("result-getLeaderboard").innerHTML = "WELCOME: Get leaderboard function is working.";
+                                }
+                        })
+                        .catch(error => {
+                                document.getElementById("result-getLeaderboard").innerHTML = "Error: " + error.message;
+                        });
+        }
 
-<!--In footer there is a button that takes you to the about page -->
-<footer id="footer">
-        <p id="copyright">Copyright &copy; Treasure Hunt 2023</p>
-        <a id="about-button" href="about.html">About</a>
-</footer>
-
-<script src="src/TH-script.js"></script>
+</script>
 </body>
-
 </html>
+
+
+
